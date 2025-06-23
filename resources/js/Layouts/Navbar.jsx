@@ -26,7 +26,7 @@ export default function Navbar() {
 
     return (
         // Navbar dengan efek blur modern dan border bawah yang rapi
-        <nav className="bg-white backdrop-blur-md w-full fixed top-0 start-0 z-50 border-b border-gray-200 p-4 md:py-0">
+        <nav className="bg-white backdrop-blur-md w-full fixed top-0 start-0 z-50 p-4 md:py-0 shadow-md">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                 <Link
                     href="/"

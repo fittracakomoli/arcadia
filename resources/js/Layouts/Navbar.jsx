@@ -14,7 +14,7 @@ export default function Navbar() {
             dropdown: [
                 { href: "/about", label: "Tentang Hima Ilkom" },
                 {
-                    href: "structure",
+                    href: "/structure",
                     label: "Struktur Organisasi",
                 },
             ],

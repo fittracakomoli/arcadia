@@ -19,7 +19,7 @@ export default function Navbar() {
                 },
             ],
         },
-        { href: "/services", label: "Aktivitas" },
+        { href: "/activity", label: "Aktivitas" },
         { href: "/contact", label: "Berita" },
         { href: "/contact", label: "Komunitas" },
     ];

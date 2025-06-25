@@ -32,6 +32,15 @@ Route::get('/structure', function () {
     ]);
 });
 
+Route::get('/underbow', function () {
+    return Inertia::render('Underbow', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
 Route::get('/activity', function () {
     return Inertia::render('Activity', [
         'canLogin' => Route::has('login'),

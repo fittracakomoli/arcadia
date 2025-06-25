@@ -8,7 +8,6 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -17,7 +16,6 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return Inertia::render('About', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -26,7 +24,6 @@ Route::get('/about', function () {
 Route::get('/structure', function () {
     return Inertia::render('Structure', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -35,7 +32,6 @@ Route::get('/structure', function () {
 Route::get('/underbow', function () {
     return Inertia::render('Underbow', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -44,7 +40,6 @@ Route::get('/underbow', function () {
 Route::get('/activity', function () {
     return Inertia::render('Activity', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -53,7 +48,6 @@ Route::get('/activity', function () {
 Route::get('/news', function () {
     return Inertia::render('News', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -62,7 +56,6 @@ Route::get('/news', function () {
 Route::get('/readnews', function () {
     return Inertia::render('ReadNews', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -71,7 +64,6 @@ Route::get('/readnews', function () {
 Route::get('/contact', function () {
     return Inertia::render('Contact', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);

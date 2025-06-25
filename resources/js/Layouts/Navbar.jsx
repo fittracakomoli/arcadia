@@ -17,11 +17,15 @@ export default function Navbar() {
                     href: "/structure",
                     label: "Struktur Organisasi",
                 },
+                {
+                    href: "/underbow",
+                    label: "Kenali Underbow",
+                },
             ],
         },
         { href: "/activity", label: "Aktivitas" },
-        { href: "/contact", label: "Berita" },
-        { href: "/contact", label: "Komunitas" },
+        { href: "/news", label: "Berita" },
+        { href: "/contact", label: "Kontak" },
     ];
 
     return (

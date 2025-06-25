@@ -206,7 +206,7 @@ export default function Activity() {
                                 {featuredEvent.description}
                             </p>
                             <button className="mt-2 bg-secondary hover:bg-yellow-500 text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-md">
-                                Lihat Info Selengkapnya
+                                Tambahkan Pengingat
                             </button>
                         </div>
                     </div>

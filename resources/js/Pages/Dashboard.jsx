@@ -1,26 +1,109 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from "@inertiajs/react";
+import { useState } from "react";
+import Sidebar from "@/Layouts/Sidebar"; // Import komponen Sidebar
 
+// Ikon untuk tombol menu mobile
+const MenuIcon = () => (
+    <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+        />
+    </svg>
+);
+
+// --- Komponen Utama Dashboard ---
 export default function Dashboard() {
-    return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
+    const { auth } = usePage().props;
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
-                            You're logged in!
+    return (
+        <div className="min-h-screen bg-gray-100">
+            <Head title="Dashboard" />
+            {/* Panggil komponen Sidebar di sini */}
+            <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+
+            <div className="lg:ml-72">
+                <header className="bg-white shadow-sm p-4 flex items-center justify-between sticky top-0 z-20">
+                    <button
+                        onClick={() => setSidebarOpen(true)}
+                        className="lg:hidden text-gray-600"
+                    >
+                        <MenuIcon />
+                    </button>
+                    <h2 className="text-xl font-semibold text-gray-800 hidden lg:block">
+                        Dashboard
+                    </h2>
+                    <div className="text-right">
+                        <span className="font-semibold text-gray-700">
+                            {auth.user.name}
+                        </span>
+                    </div>
+                </header>
+
+                <main className="p-6">
+                    <div className=" bg-white p-6 rounded-lg shadow">
+                        <h3 className="text-lg font-semibold text-gray-800">
+                            Selamat Datang, {auth.user.name}!
+                        </h3>
+                        <p className="text-gray-600 mt-2">
+                            Anda telah berhasil login ke dashboard HIMA ILKOM
+                            Arcadia. Dari sini Anda dapat mengelola konten
+                            website.
+                        </p>
+                    </div>
+
+                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Admin Terdaftar
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                125
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Total Berita Dibuat
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                87
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Jumlah Anggota
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                3
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Jumlah Kegiatan
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                8
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Total Pesan Masuk
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                8
+                            </p>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
-        </AuthenticatedLayout>
+        </div>
     );
 }

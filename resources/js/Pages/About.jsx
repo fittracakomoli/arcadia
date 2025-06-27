@@ -13,10 +13,6 @@ export default function About() {
                         <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">
                             Mengenal HIMA ILKOM
                         </h1>
-                        <p className="text-xl text-gray-600 mb-8">
-                            Wadah Aspirasi dan Pengembangan Potensi Mahasiswa
-                            Ilmu Komputer.
-                        </p>
                         <div className="space-y-4 text-gray-700 leading-relaxed">
                             <p>
                                 Himpunan Mahasiswa Ilmu Komputer (HIMA ILKOM)
@@ -210,16 +206,6 @@ export default function About() {
                         </h2>
                         <p className="text-gray-600 mt-2">
                             Makna di Balik Setiap Elemen Visual Kabinet Arcadia
-                        </p>
-                    </div>
-                    <div className="mb-6">
-                        <p className="text-gray-700">
-                            <strong>Resonant Harmony</strong> Bentuk pohon yang
-                            menjadi representasi bahwa HIMA ILKOM akan terus
-                            tumbuh dan mengembangkan potensinya. Terdiri dari
-                            banyak bentuk yang memiliki rupa serta ukuran yang
-                            beragam namun masih seirama, menggambarkan
-                            keberagaman yang ada pada ILKOM.
                         </p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-12 items-center">

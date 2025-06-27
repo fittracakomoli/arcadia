@@ -1,6 +1,6 @@
 import { Head, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import Sidebar from "@/Layouts/Sidebar"; // Import komponen Sidebar
+import Sidebar from "@/Layouts/Sidebar";
 
 // Ikon untuk tombol menu mobile
 const MenuIcon = () => (
@@ -21,7 +21,7 @@ const MenuIcon = () => (
 
 // --- Komponen Utama Dashboard ---
 export default function Dashboard() {
-    const { auth } = usePage().props;
+    const { auth, stats } = usePage().props;
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
@@ -41,8 +41,8 @@ export default function Dashboard() {
                     <h2 className="text-xl font-semibold text-gray-800 hidden lg:block">
                         Dashboard
                     </h2>
-                    <div className="text-right">
-                        <span className="font-semibold text-gray-700">
+                    <div className="text-right inline-flex items-center gap-2 bg-primary px-4 py-2 rounded-lg font-semibold">
+                        <span className="font-semibold text-white">
                             {auth.user.name}
                         </span>
                     </div>
@@ -66,7 +66,7 @@ export default function Dashboard() {
                                 Admin Terdaftar
                             </h3>
                             <p className="text-3xl font-bold text-primary mt-2">
-                                125
+                                {stats.admins}
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow">
@@ -74,7 +74,7 @@ export default function Dashboard() {
                                 Total Berita Dibuat
                             </h3>
                             <p className="text-3xl font-bold text-primary mt-2">
-                                87
+                                {stats.news}
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow">
@@ -82,7 +82,7 @@ export default function Dashboard() {
                                 Jumlah Anggota
                             </h3>
                             <p className="text-3xl font-bold text-primary mt-2">
-                                3
+                                {stats.members}
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow">
@@ -90,7 +90,23 @@ export default function Dashboard() {
                                 Jumlah Kegiatan
                             </h3>
                             <p className="text-3xl font-bold text-primary mt-2">
-                                8
+                                {stats.activities}
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Jumlah Agenda
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                {stats.agendas}
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow">
+                            <h3 className="text-gray-500 text-sm font-medium">
+                                Total Foto Kegiatan
+                            </h3>
+                            <p className="text-3xl font-bold text-primary mt-2">
+                                {stats.photos}
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow">
@@ -98,7 +114,7 @@ export default function Dashboard() {
                                 Total Pesan Masuk
                             </h3>
                             <p className="text-3xl font-bold text-primary mt-2">
-                                8
+                                {stats.messages}
                             </p>
                         </div>
                     </div>

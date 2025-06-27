@@ -2,83 +2,33 @@ import { Head, Link } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 import { useState, useEffect } from "react"; // Impor useState dan useEffect
 
-export default function Home() {
-    // Data untuk galeri dengan kategori
-    const allImages = [
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Raplen Raker",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Workshop",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "CICS",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Studi Banding",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Raplen Raker",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Workshop",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "CICS",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Studi Banding",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Raplen Raker",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Workshop",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "CICS",
-        },
-        {
-            src: "/assets/IMG_5460.jpg",
-            category: "Studi Banding",
-        },
-    ];
-
+export default function Home({ settings, latestNews = [], galleries = [] }) {
     // Mendapatkan daftar kategori unik dari data gambar
     const categories = [
         "Semua",
-        ...new Set(allImages.map((image) => image.category)),
+        ...new Set(galleries.map((image) => image.category)),
     ];
 
     // State untuk kategori aktif dan gambar yang akan ditampilkan
     const [activeCategory, setActiveCategory] = useState("Semua");
-    const [filteredImages, setFilteredImages] = useState(allImages);
+    const [filteredImages, setFilteredImages] = useState(galleries);
 
     // Efek untuk memfilter gambar saat kategori aktif berubah
     useEffect(() => {
         if (activeCategory === "Semua") {
-            setFilteredImages(allImages);
+            setFilteredImages(galleries);
         } else {
             setFilteredImages(
-                allImages.filter((image) => image.category === activeCategory)
+                galleries.filter((image) => image.category === activeCategory)
             );
         }
-    }, [activeCategory]);
+    }, [activeCategory, galleries]);
 
     return (
         <MainLayout>
-            <Head title="HIMA ILKOM Arcadia 2025" />
+            <Head
+                title={`${settings.cabinet_name} ${settings.period}`}
+            />
 
             {/* Hero Section Start */}
             <section className="relative pt-36 pb-24 md:pt-72 md:pb-48 flex items-center justify-center text-center text-white">
@@ -87,7 +37,7 @@ export default function Home() {
                     className="absolute inset-0 bg-cover bg-center"
                     // Ganti URL ini dengan gambar Anda sendiri, misalnya '/assets/hero-image.jpg'
                     style={{
-                        backgroundImage: "url('/assets/IMG_5460.jpg')",
+                        backgroundImage: `url(/storage/${settings.cover_photo_path})`,
                     }}
                 ></div>
 
@@ -98,11 +48,10 @@ export default function Home() {
                 {/* Konten Teks */}
                 <div className="relative z-10 p-4">
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                        Himpunan Mahasiswa Ilmu Komputer
+                        {settings.headline}
                     </h1>
-                    <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-                        Wadah aspirasi, kreasi, dan inovasi bagi seluruh
-                        mahasiswa untuk berkembang bersama.
+                    <p className="text-lg md:text-xl mb-8 max-w-screen-lg mx-auto">
+                        {settings.tagline}
                     </p>
                     <div className="flex gap-4 items-center justify-center">
                         <Link
@@ -169,41 +118,16 @@ export default function Home() {
                         </p>
                     </div>
 
+                    {/* Bagian Berita menjadi dinamis */}
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {/* Contoh Data Berita - Ganti dengan data dari backend Anda */}
-                        {[
-                            {
-                                image: "/assets/IMG_5460.jpg",
-                                category: "Kegiatan",
-                                title: "Sukses Gelar Seminar Nasional Teknologi AI 2025",
-                                excerpt:
-                                    "Seminar yang dihadiri oleh ratusan mahasiswa dan praktisi industri ini membahas masa depan kecerdasan buatan.",
-                                href: "/news/seminar-nasional-ai-2025",
-                            },
-                            {
-                                image: "/assets/IMG_5460.jpg",
-                                category: "Prestasi",
-                                title: "Mahasiswa Ilkom Raih Juara 1 Competitive Programming",
-                                excerpt:
-                                    "Tim dari Hima Ilkom berhasil mengalahkan puluhan tim dari universitas lain dalam kompetisi bergengsi tingkat nasional.",
-                                href: "/news/juara-competitive-programming",
-                            },
-                            {
-                                image: "/assets/IMG_5460.jpg",
-                                category: "Pengabdian",
-                                title: "Bakti Sosial dan Pelatihan IT di Desa Binaan",
-                                excerpt:
-                                    "Sebagai bentuk pengabdian kepada masyarakat, kami mengadakan pelatihan dasar komputer untuk anak-anak sekolah.",
-                                href: "/news/bakti-sosial-desa-binaan",
-                            },
-                        ].map((news, index) => (
+                        {latestNews.map((news) => (
                             <article
-                                key={index}
+                                key={news.id}
                                 className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2"
                             >
-                                <Link href={news.href}>
+                                <Link href={route("news.show", news.slug)}>
                                     <img
-                                        src={news.image}
+                                        src={`/storage/${news.image_path}`}
                                         alt={news.title}
                                         className="w-full h-48 object-cover"
                                     />
@@ -213,16 +137,18 @@ export default function Home() {
                                         {news.category}
                                     </span>
                                     <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors">
-                                        <Link href={news.href}>
+                                        <Link
+                                            href={route("news.show", news.slug)}
+                                        >
                                             {news.title}
                                         </Link>
                                     </h3>
-                                    <p className="mt-2 text-gray-600 text-sm">
+                                    <p className="mt-2 text-gray-600 text-sm line-clamp-3">
                                         {news.excerpt}
                                     </p>
                                     <div className="mt-4">
                                         <Link
-                                            href={news.href}
+                                            href={route("news.show", news.slug)}
                                             className="text-primary font-semibold hover:text-secondary transition-colors"
                                         >
                                             Baca Selengkapnya &rarr;
@@ -239,20 +165,16 @@ export default function Home() {
                     {/* Kolom Kiri: Teks Penjelasan */}
                     <div className="text-left">
                         <h2 className="text-3xl font-bold text-primary mb-4">
-                            Tentang HIMA ILKOM
+                            Tentang {settings.organization_name}
                         </h2>
                         <p className="text-xl font-semibold text-gray-700 mb-4">
-                            Kabinet Arcadia 2025
+                            Kabinet {settings.cabinet_name} {settings.period}
                         </p>
                         <p className="text-gray-600 mb-6 leading-relaxed">
-                            HIMA ILKOM Kabinet Arcadia berkomitmen untuk menjadi
-                            rumah bagi seluruh mahasiswa Ilmu Komputer, mewadahi
-                            aspirasi, serta mendorong pengembangan potensi
-                            akademik dan non-akademik melalui program kerja yang
-                            inovatif dan kolaboratif.
+                            {settings.definition}
                         </p>
                         <Link
-                            href="/about/hima-ilkom"
+                            href="/about"
                             className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105"
                         >
                             Baca Selengkapnya
@@ -263,7 +185,7 @@ export default function Home() {
                     <div className="flex justify-center items-center order-first md:order-last">
                         {/* Ganti src dengan path logo HIMA ILKOM Anda */}
                         <img
-                            src="/assets/logo.png"
+                            src={`/storage/${settings.logo_full_path}`}
                             alt="Logo HIMA ILKOM"
                             className="h-48 md:h-64 object-contain"
                         />
@@ -283,51 +205,60 @@ export default function Home() {
                     </div>
 
                     {/* Tombol Filter Kategori */}
-                    <div className="flex justify-center flex-wrap gap-2 mb-12">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setActiveCategory(category)}
-                                className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
-                                    activeCategory === category
-                                        ? "bg-primary text-white"
-                                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                                }`}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Grid Galeri */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        {filteredImages.map((image, index) => (
-                            <div
-                                key={`${image.src}-${index}`}
-                                className="relative aspect-square rounded-lg overflow-hidden group"
-                            >
-                                <img
-                                    src={image.src}
-                                    alt={`Galeri ${image.category} ${
-                                        index + 1
+                    {galleries.length > 0 && (
+                        <div className="flex justify-center flex-wrap gap-2 mb-12">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+                                        activeCategory === category
+                                            ? "bg-primary text-white"
+                                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                                     }`}
-                                    className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                                    <span className="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {image.category}
-                                    </span>
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Grid Galeri menjadi dinamis */}
+                    {galleries.length > 0 ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            {filteredImages.map((image) => (
+                                <div
+                                    key={image.id}
+                                    className="relative aspect-square rounded-lg overflow-hidden group"
+                                >
+                                    <img
+                                        src={`/storage/${image.image_path}`}
+                                        alt={
+                                            image.caption ||
+                                            `Galeri ${image.category}`
+                                        }
+                                        className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+                                        <span className="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            {image.category}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500">
+                            Galeri kegiatan akan segera diperbarui.
+                        </p>
+                    )}
                 </div>
             </section>
             <section className="py-16 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-primary">
-                            Video Profil Kabinet Arcadia
+                            Video Profil Kabinet {settings.cabinet_name}
                         </h2>
                         <p className="text-gray-600 mt-2">
                             Kenali kami lebih dekat melalui video profil singkat
@@ -343,7 +274,7 @@ export default function Home() {
                         */}
                         <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/FlbW-p_nC1c?si=0_uN8EMOivciAlvr"
+                            src={`https://www.youtube.com/embed/${settings.video_profile_link}`}
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen

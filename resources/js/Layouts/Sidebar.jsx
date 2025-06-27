@@ -39,6 +39,25 @@ const AdminIcon = () => (
         />
     </svg>
 );
+const OrganizationIcon = () => (
+    <svg
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 4h12M6 4v16M6 4H5m13 0v16m0-16h1m-1 16H6m12 0h1M6 20H5M9 7h1v1H9V7Zm5 0h1v1h-1V7Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z"
+        />
+    </svg>
+);
 const NewspaperIcon = () => (
     <svg
         class="w-6 h-6 text-gray-800 dark:text-white"
@@ -58,7 +77,7 @@ const NewspaperIcon = () => (
         />
     </svg>
 );
-const UsersIcon = () => (
+const MembersIcon = () => (
     <svg
         class="w-6 h-6 text-gray-800 dark:text-white"
         aria-hidden="true"
@@ -95,6 +114,25 @@ const CalendarIcon = () => (
         />
     </svg>
 );
+const ImageIcon = () => (
+    <svg
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
+        />
+    </svg>
+);
 const MessageIcon = () => (
     <svg
         class="w-6 h-6 text-gray-800 dark:text-white"
@@ -116,7 +154,7 @@ const MessageIcon = () => (
 );
 const CogIcon = () => (
     <svg
-        className="w-5 h-5"
+        className="w-6 h-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -137,16 +175,20 @@ const CogIcon = () => (
 );
 const LogoutIcon = () => (
     <svg
-        className="w-5 h-5"
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
         fill="none"
-        stroke="currentColor"
         viewBox="0 0 24 24"
     >
         <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"
         />
     </svg>
 );
@@ -155,8 +197,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     const { url } = usePage();
     const navLinks = [
         {
-            href: route("dashboard"),
-            routeName: "dashboard",
+            href: route("admin.dashboard"),
+            routeName: "admin.dashboard",
             label: "Dashboard",
             icon: <HomeIcon />,
         },
@@ -167,28 +209,46 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             icon: <AdminIcon />,
         },
         {
+            href: route("admin.organization.index"),
+            routeName: "admin.organization.*",
+            label: "Manajemen Organisasi",
+            icon: <OrganizationIcon />,
+        },
+        {
             href: route("admin.news.index"),
             routeName: "admin.news.*",
             label: "Manajemen Berita",
             icon: <NewspaperIcon />,
         },
         {
-            href: "/admin/events",
-            routeName: "admin.events.*",
+            href: route("admin.members.index"),
+            routeName: "admin.members.*",
+            label: "Manajemen Anggota",
+            icon: <MembersIcon />,
+        },
+        {
+            href: route("admin.activities.index"),
+            routeName: "admin.activities.*",
             label: "Manajemen Kegiatan",
             icon: <CalendarIcon />,
         },
         {
-            href: "/admin/inbox",
-            routeName: "admin.inbox.*",
-            label: "Manajemen Pesan",
-            icon: <MessageIcon />,
+            href: route("admin.agendas.index"),
+            routeName: "admin.agendas.*",
+            label: "Manajemen Agenda",
+            icon: <CalendarIcon />,
         },
         {
-            href: route("profile.edit"),
-            routeName: "profile.*",
-            label: "Pengaturan Akun",
-            icon: <CogIcon />,
+            href: route("admin.gallery.index"),
+            routeName: "admin.gallery.*",
+            label: "Manajemen Galeri",
+            icon: <ImageIcon />,
+        },
+        {
+            href: route("admin.messages.index"),
+            routeName: "admin.messages.*",
+            label: "Manajemen Pesan",
+            icon: <MessageIcon />,
         },
     ];
 
@@ -229,18 +289,29 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                             <span>{link.label}</span>
                         </Link>
                     ))}
+                    <div className="mt-2 border-t border-white pt-2">
+                        <Link
+                            key={route("profile.edit")}
+                            href={route("profile.edit")}
+                            className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors ${
+                                route().current("profile.*")
+                                    ? "bg-secondary font-semibold"
+                                    : "hover:bg-secondary"
+                            }`}
+                        >
+                            <CogIcon />
+                            <span>Pengaturan Akun</span>
+                        </Link>
+                        <Link
+                            href={route("logout")}
+                            method="post"
+                            className="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors hover:bg-secondary"
+                        >
+                            <LogoutIcon />
+                            <span>Logout</span>
+                        </Link>
+                    </div>
                 </nav>
-                <div className="p-2 border-t border-white">
-                    <Link
-                        href={route("logout")}
-                        method="post"
-                        as="button"
-                        className="flex items-center gap-3 w-full px-4 py-3 mx-2 rounded-lg hover:bg-secondary"
-                    >
-                        <LogoutIcon />
-                        <span>Logout</span>
-                    </Link>
-                </div>
             </aside>
         </>
     );

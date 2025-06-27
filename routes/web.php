@@ -3,17 +3,19 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AgendaController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrganizationSettingController;
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 Route::get('/about', function () {
     return Inertia::render('About', [
@@ -23,13 +25,7 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/structure', function () {
-    return Inertia::render('Structure', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/structure', [PageController::class, 'structure'])->name('structure.index');
 
 Route::get('/underbow', function () {
     return Inertia::render('Underbow', [
@@ -39,41 +35,13 @@ Route::get('/underbow', function () {
     ]);
 });
 
-Route::get('/activity', function () {
-    return Inertia::render('Activity', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/activity', [PageController::class, 'activity'])->name('activity.index');
 
-Route::get('/news', function () {
-    return Inertia::render('News', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/news', [PageController::class, 'newsIndex'])->name('news.index');
+Route::get('/news/{news:slug}', [PageController::class, 'newsShow'])->name('news.show');
 
-Route::get('/readnews', function () {
-    return Inertia::render('ReadNews', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/contact', function () {
-    return Inertia::render('Contact', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/contact', function () { return Inertia::render('Contact'); })->name('contact.index');
+Route::post('/contact', [PageController::class, 'sendContactMessage'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -82,8 +50,17 @@ Route::middleware('auth')->group(function () {
 
     // --- TAMBAHKAN GRUP ROUTE ADMIN DI SINI ---
     Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('users', UserController::class);
+        Route::get('organization', [OrganizationSettingController::class, 'index'])->name('organization.index');
+        Route::post('organization', [OrganizationSettingController::class, 'update'])->name('organization.update');
         Route::resource('news', NewsController::class);
+        Route::resource('members', MemberController::class);
+        Route::resource('activities', ActivityController::class);
+        Route::resource('agendas', AgendaController::class);
+        Route::resource('gallery', GalleryController::class);
+        Route::resource('messages', MessageController::class);
+        Route::post('messages/{message}/reply', [MessageController::class, 'reply'])->name('messages.reply');
     });
 });
 

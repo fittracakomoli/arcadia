@@ -1,4 +1,4 @@
-import { Head, Link, usePage, useForm, router } from "@inertiajs/react";
+import { Head, useForm, router } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import Sidebar from "@/Layouts/Sidebar";
 import InputError from "@/Components/InputError";
@@ -54,37 +54,35 @@ const CloseIcon = () => (
     </svg>
 );
 
-// --- Komponen Modal Berita ---
-const NewsModal = ({ isOpen, onClose, newsToEdit }) => {
+// --- Komponen Modal Agenda ---
+const AgendaModal = ({ isOpen, onClose, agendaToEdit }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        title: "",
-        content: "",
-        category: "",
+        name: "",
+        description: "",
         image: null,
         _method: "POST",
     });
-    const isEditMode = Boolean(newsToEdit);
+    const isEditMode = Boolean(agendaToEdit);
     const [imagePreview, setImagePreview] = useState(null);
 
     useEffect(() => {
         if (isEditMode) {
             setData({
-                title: newsToEdit.title,
-                content: newsToEdit.content,
-                category: newsToEdit.category,
+                name: agendaToEdit.name,
+                description: agendaToEdit.description || "",
                 image: null,
-                _method: "PATCH",
+                _method: "PUT",
             });
             setImagePreview(
-                newsToEdit.image_path
-                    ? `/storage/${newsToEdit.image_path}`
+                agendaToEdit.image_path
+                    ? `/storage/${agendaToEdit.image_path}`
                     : null
             );
         } else {
             reset();
             setImagePreview(null);
         }
-    }, [newsToEdit, isOpen]);
+    }, [agendaToEdit, isOpen]);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -97,8 +95,8 @@ const NewsModal = ({ isOpen, onClose, newsToEdit }) => {
     const submit = (e) => {
         e.preventDefault();
         const url = isEditMode
-            ? route("admin.news.update", newsToEdit.id)
-            : route("admin.news.store");
+            ? route("admin.agendas.update", agendaToEdit.id)
+            : route("admin.agendas.store");
         post(url, {
             onSuccess: () => {
                 reset();
@@ -115,7 +113,7 @@ const NewsModal = ({ isOpen, onClose, newsToEdit }) => {
             <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
                 <div className="p-4 border-b flex justify-between items-center">
                     <h3 className="text-lg font-semibold">
-                        {isEditMode ? "Edit Berita" : "Buat Berita Baru"}
+                        {isEditMode ? "Edit Agenda" : "Buat Agenda Baru"}
                     </h3>
                     <button onClick={onClose}>
                         <CloseIcon />
@@ -125,47 +123,34 @@ const NewsModal = ({ isOpen, onClose, newsToEdit }) => {
                     onSubmit={submit}
                     className="p-6 space-y-4 max-h-[80vh] overflow-y-auto"
                 >
-                    {/* Form fields... */}
                     <div>
-                        <InputLabel htmlFor="title" value="Judul Berita" />
+                        <InputLabel htmlFor="name" value="Nama Agenda" />
                         <TextInput
-                            id="title"
-                            value={data.title}
-                            onChange={(e) => setData("title", e.target.value)}
+                            id="name"
+                            value={data.name}
+                            onChange={(e) => setData("name", e.target.value)}
                             required
                             className="mt-1 block w-full"
                         />
-                        <InputError message={errors.title} className="mt-2" />
+                        <InputError message={errors.name} className="mt-2" />
                     </div>
                     <div>
-                        <InputLabel htmlFor="category" value="Kategori" />
-                        <TextInput
-                            id="category"
-                            value={data.category}
+                        <InputLabel htmlFor="description" value="Deskripsi" />
+                        <textarea
+                            id="description"
+                            value={data.description}
                             onChange={(e) =>
-                                setData("category", e.target.value)
+                                setData("description", e.target.value)
                             }
-                            required
-                            className="mt-1 block w-full"
-                        />
+                            className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm h-32"
+                        ></textarea>
                         <InputError
-                            message={errors.category}
+                            message={errors.description}
                             className="mt-2"
                         />
                     </div>
                     <div>
-                        <InputLabel htmlFor="content" value="Isi Berita" />
-                        <textarea
-                            id="content"
-                            value={data.content}
-                            onChange={(e) => setData("content", e.target.value)}
-                            required
-                            className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm h-40"
-                        ></textarea>
-                        <InputError message={errors.content} className="mt-2" />
-                    </div>
-                    <div>
-                        <InputLabel htmlFor="image" value="Gambar Sampul" />
+                        <InputLabel htmlFor="image" value="Gambar" />
                         <input
                             id="image"
                             type="file"
@@ -199,7 +184,7 @@ const NewsModal = ({ isOpen, onClose, newsToEdit }) => {
     );
 };
 
-// --- [BARU] Komponen Modal Konfirmasi Hapus ---
+// --- Komponen Modal Konfirmasi Hapus ---
 const DeleteConfirmationModal = ({
     isOpen,
     onClose,
@@ -208,7 +193,6 @@ const DeleteConfirmationModal = ({
     itemName,
 }) => {
     if (!isOpen) return null;
-
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4">
             <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6 text-left">
@@ -216,12 +200,11 @@ const DeleteConfirmationModal = ({
                     Konfirmasi Hapus
                 </h3>
                 <p className="mt-2 text-sm text-gray-600">
-                    Apakah Anda yakin ingin menghapus berita: <br />
+                    Apakah Anda yakin ingin menghapus agenda: <br />
                     <span className="font-medium text-gray-800">
                         "{itemName}"
                     </span>
-                    ?
-                    <br />
+                    ?<br />
                     <br />
                     Tindakan ini tidak dapat dibatalkan.
                 </p>
@@ -247,47 +230,35 @@ const DeleteConfirmationModal = ({
     );
 };
 
-// --- Komponen Card Berita ---
-const NewsCard = ({ newsItem, onEdit, onDelete }) => {
-    const imageUrl = newsItem.image_path
-        ? `/storage/${newsItem.image_path}`
-        : `https://ui-avatars.com/api/?name=${encodeURIComponent(
-              newsItem.title
-          )}&background=EBF4FF&color=1E40AF&size=400`;
+// --- Komponen Card Agenda ---
+const AgendaCard = ({ agenda, onEdit, onDelete }) => {
+    const imageUrl = agenda.image_path
+        ? `/storage/${agenda.image_path}`
+        : "https://via.placeholder.com/400x200.png?text=Arcadia";
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
             <img
                 src={imageUrl}
-                alt={`Gambar untuk ${newsItem.title}`}
+                alt={agenda.name}
                 className="w-full h-48 object-cover"
             />
             <div className="p-4 flex flex-col flex-grow">
-                <div className="mb-3">
-                    <span className="inline-block bg-blue-100 text-primary text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
-                        {newsItem.category}
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 h-14">
-                        {newsItem.title}
-                    </h3>
-                </div>
-                <div className="text-sm text-gray-500 mt-auto pt-3 border-t">
-                    <p>Penulis: {newsItem.user.name}</p>
-                    <p>
-                        Terbit:{" "}
-                        {new Date(newsItem.published_at).toLocaleDateString(
-                            "id-ID"
-                        )}
-                    </p>
-                </div>
-                <div className="mt-4 flex justify-end gap-3">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">
+                    {agenda.name}
+                </h3>
+                <p className="text-sm text-gray-600 mb-3 flex-grow">
+                    {agenda.description?.substring(0, 100)}
+                    {agenda.description?.length > 100 ? "..." : ""}
+                </p>
+                <div className="mt-auto flex justify-end gap-3 pt-3 border-t">
                     <button
-                        onClick={() => onEdit(newsItem)}
+                        onClick={() => onEdit(agenda)}
                         className="text-sm font-medium text-blue-600 hover:text-blue-800"
                     >
                         Edit
                     </button>
                     <button
-                        onClick={() => onDelete(newsItem)}
+                        onClick={() => onDelete(agenda)}
                         className="text-sm font-medium text-red-600 hover:text-red-800"
                     >
                         Hapus
@@ -298,55 +269,52 @@ const NewsCard = ({ newsItem, onEdit, onDelete }) => {
     );
 };
 
-// --- Komponen Utama Halaman Manajemen Berita ---
-export default function NewsList({ news }) {
+// --- Komponen Utama Halaman Manajemen Agenda ---
+export default function AgendaList({ agendas }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newsToEdit, setNewsToEdit] = useState(null);
-    const [newsToDelete, setNewsToDelete] = useState(null); // State untuk item yang akan dihapus
+    const [agendaToEdit, setAgendaToEdit] = useState(null);
+    const [agendaToDelete, setAgendaToDelete] = useState(null);
 
-    // Gunakan useForm untuk mendapatkan state 'processing' saat menghapus
     const { delete: destroy, processing: isDeleting } = useForm();
 
-    const openModalForEdit = (newsItem) => {
-        setNewsToEdit(newsItem);
+    const openModalForEdit = (agendaItem) => {
+        setAgendaToEdit(agendaItem);
         setIsModalOpen(true);
     };
 
     const openModalForAdd = () => {
-        setNewsToEdit(null);
+        setAgendaToEdit(null);
         setIsModalOpen(true);
     };
 
-    // Fungsi ini sekarang hanya membuka modal konfirmasi
-    const handleDeleteClick = (newsItem) => {
-        setNewsToDelete(newsItem);
+    const handleDeleteClick = (agendaItem) => {
+        setAgendaToDelete(agendaItem);
     };
 
-    // Fungsi ini yang akan menjalankan aksi hapus
     const confirmDelete = () => {
-        if (!newsToDelete) return;
-        destroy(route("admin.news.destroy", newsToDelete.id), {
+        if (!agendaToDelete) return;
+        destroy(route("admin.agendas.destroy", agendaToDelete.id), {
             preserveScroll: true,
-            onSuccess: () => setNewsToDelete(null), // Tutup modal setelah berhasil
+            onSuccess: () => setAgendaToDelete(null),
         });
     };
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <Head title="Manajemen Berita" />
+            <Head title="Manajemen Agenda" />
             <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-            <NewsModal
+            <AgendaModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                newsToEdit={newsToEdit}
+                agendaToEdit={agendaToEdit}
             />
             <DeleteConfirmationModal
-                isOpen={Boolean(newsToDelete)}
-                onClose={() => setNewsToDelete(null)}
+                isOpen={Boolean(agendaToDelete)}
+                onClose={() => setAgendaToDelete(null)}
                 onConfirm={confirmDelete}
                 processing={isDeleting}
-                itemName={newsToDelete?.title}
+                itemName={agendaToDelete?.name}
             />
 
             <div className="lg:ml-72">
@@ -358,42 +326,42 @@ export default function NewsList({ news }) {
                         <MenuIcon />
                     </button>
                     <h2 className="text-xl font-semibold text-gray-800">
-                        Manajemen Berita
+                        Manajemen Agenda
                     </h2>
                     <button
                         onClick={openModalForAdd}
                         className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition"
                     >
                         <PlusIcon />
-                        <span>Buat Berita</span>
+                        <span>Tambah Agenda</span>
                     </button>
                 </header>
 
                 <main className="p-6">
-                    {news.data.length > 0 ? (
+                    {agendas.data.length > 0 ? (
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                {news.data.map((item) => (
-                                    <NewsCard
+                                {agendas.data.map((item) => (
+                                    <AgendaCard
                                         key={item.id}
-                                        newsItem={item}
+                                        agenda={item}
                                         onEdit={openModalForEdit}
-                                        onDelete={handleDeleteClick} // Panggil fungsi untuk membuka modal
+                                        onDelete={handleDeleteClick}
                                     />
                                 ))}
                             </div>
                             <div className="mt-8 flex justify-center">
-                                <Pagination links={news.links} />
+                                <Pagination links={agendas.links} />
                             </div>
                         </>
                     ) : (
                         <div className="text-center py-16 bg-white rounded-lg shadow">
                             <h3 className="text-xl font-semibold text-gray-700">
-                                Belum Ada Berita
+                                Belum Ada Agenda
                             </h3>
                             <p className="text-gray-500 mt-2">
-                                Klik tombol "Buat Berita" untuk menambahkan
-                                berita pertama Anda.
+                                Klik tombol "Tambah Agenda" untuk menambahkan
+                                data pertama Anda.
                             </p>
                         </div>
                     )}

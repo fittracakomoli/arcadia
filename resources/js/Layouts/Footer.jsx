@@ -62,8 +62,8 @@ export default function Footer() {
                     <div>
                         {/* Ganti dengan logo versi terang jika ada */}
                         <img
-                            src="/assets/logo-horizontal-white.png"
-                            className="h-10"
+                            src="/assets/logo-horizontal.png"
+                            className="h-10 brightness-0 invert"
                             alt="Arcadia Logo White"
                         />
                         <p className="mt-6 max-w-xs text-gray-300">

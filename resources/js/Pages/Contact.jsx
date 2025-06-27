@@ -1,23 +1,22 @@
-import { Head } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react"; // <-- Ganti import
 import MainLayout from "@/Layouts/MainLayout";
-import { useState } from "react";
+import InputError from "@/Components/InputError"; // <-- Tambahkan ini jika belum ada
 
 export default function Contact() {
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
-    const [submitted, setSubmitted] = useState(false);
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    // Gunakan useForm untuk manajemen state, error, dan status pengiriman
+    const { data, setData, post, processing, errors, wasSuccessful, reset } =
+        useForm({
+            name: "",
+            email: "",
+            subject: "",
+            body: "", // <-- Ganti 'message' menjadi 'body' agar sesuai dengan database
+        });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Kirim data ke backend di sini (misal via fetch/axios)
-        setSubmitted(true);
+        post(route("contact.send"), {
+            onSuccess: () => reset(), // Reset form setelah berhasil
+        });
     };
 
     return (
@@ -41,9 +40,10 @@ export default function Contact() {
                         <h2 className="text-2xl font-bold text-primary mb-6">
                             Formulir Pesan
                         </h2>
-                        {submitted ? (
+                        {wasSuccessful ? (
                             <div className="p-6 bg-green-50 border border-green-200 rounded-lg text-green-700">
-                                Pesan Anda telah terkirim. Terima kasih!
+                                Pesan Anda telah terkirim. Terima kasih! Kami
+                                akan segera meresponnya.
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
@@ -54,10 +54,16 @@ export default function Contact() {
                                     <input
                                         type="text"
                                         name="name"
-                                        value={form.name}
-                                        onChange={handleChange}
+                                        value={data.name}
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
                                         required
                                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    />
+                                    <InputError
+                                        message={errors.name}
+                                        className="mt-2"
                                     />
                                 </div>
                                 <div>
@@ -67,10 +73,35 @@ export default function Contact() {
                                     <input
                                         type="email"
                                         name="email"
-                                        value={form.email}
-                                        onChange={handleChange}
+                                        value={data.email}
+                                        onChange={(e) =>
+                                            setData("email", e.target.value)
+                                        }
                                         required
                                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    />
+                                    <InputError
+                                        message={errors.email}
+                                        className="mt-2"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block mb-2 font-semibold text-gray-700">
+                                        Subjek
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="subject"
+                                        value={data.subject}
+                                        onChange={(e) =>
+                                            setData("subject", e.target.value)
+                                        }
+                                        required
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    />
+                                    <InputError
+                                        message={errors.subject}
+                                        className="mt-2"
                                     />
                                 </div>
                                 <div>
@@ -78,19 +109,26 @@ export default function Contact() {
                                         Pesan
                                     </label>
                                     <textarea
-                                        name="message"
-                                        value={form.message}
-                                        onChange={handleChange}
+                                        name="body" // <-- Ganti 'message' menjadi 'body'
+                                        value={data.body}
+                                        onChange={(e) =>
+                                            setData("body", e.target.value)
+                                        }
                                         required
                                         rows={5}
                                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
                                     />
+                                    <InputError
+                                        message={errors.body}
+                                        className="mt-2"
+                                    />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-800 transition"
+                                    className="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-800 transition disabled:opacity-50"
+                                    disabled={processing} // <-- Nonaktifkan tombol saat mengirim
                                 >
-                                    Kirim Pesan
+                                    {processing ? "Mengirim..." : "Kirim Pesan"}
                                 </button>
                             </form>
                         )}

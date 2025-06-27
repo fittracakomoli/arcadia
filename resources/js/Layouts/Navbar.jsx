@@ -8,13 +8,13 @@ export default function Navbar() {
 
     // Daftar link navigasi untuk memudahkan pengelolaan
     const navLinks = [
-        { href: "/", label: "Beranda" },
+        { href: route("home"), label: "Beranda" },
         {
             label: "Tentang",
             dropdown: [
                 { href: "/about", label: "Tentang Hima Ilkom" },
                 {
-                    href: "/structure",
+                    href: route("structure.index"),
                     label: "Struktur Organisasi",
                 },
                 {
@@ -23,9 +23,9 @@ export default function Navbar() {
                 },
             ],
         },
-        { href: "/activity", label: "Aktivitas" },
-        { href: "/news", label: "Berita" },
-        { href: "/contact", label: "Kontak" },
+        { href: route("activity.index"), label: "Aktivitas" },
+        { href: route("news.index"), label: "Berita" },
+        { href: route("contact.index"), label: "Kontak" },
     ];
 
     return (
@@ -96,11 +96,27 @@ export default function Navbar() {
                     </div>
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
                         {navLinks.map((link) => {
-                            const isActive = link.dropdown
-                                ? link.dropdown.some((item) =>
-                                      url.startsWith(item.href)
-                                  )
-                                : url === link.href;
+                            let isActive;
+                            if (link.dropdown) {
+                                // Untuk dropdown, cek apakah path URL saat ini diawali dengan salah satu path item dropdown
+                                isActive = link.dropdown.some((item) =>
+                                    url.startsWith(item.href)
+                                );
+                            } else {
+                                let path;
+                                try {
+                                    // Coba ekstrak path dari URL absolut (hasil dari route())
+                                    path = new URL(link.href).pathname;
+                                } catch (e) {
+                                    // Jika gagal (karena href adalah path relatif seperti "/" atau "/contact"), gunakan href itu sendiri
+                                    path = link.href;
+                                }
+                                // Pengecekan: khusus untuk beranda harus sama persis, untuk yang lain cukup diawali dengan path
+                                isActive =
+                                    path === "/"
+                                        ? url === "/"
+                                        : url.startsWith(path);
+                            }
 
                             if (link.dropdown) {
                                 return (

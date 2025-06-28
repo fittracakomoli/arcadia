@@ -34,7 +34,7 @@ class NewsController extends Controller
 
         News::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title) . '-' . uniqid(),
+            'slug' => Str::slug($request->title),
             'content' => $request->content,
             'category' => $request->category,
             'image_path' => $imagePath,
@@ -65,7 +65,7 @@ class NewsController extends Controller
 
         $news->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title) . '-' . $news->id,
+            'slug' => Str::slug($request->title),
             'content' => $request->content,
             'category' => $request->category,
             'image_path' => $imagePath,

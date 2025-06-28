@@ -215,6 +215,12 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             icon: <OrganizationIcon />,
         },
         {
+            href: route("admin.underbow.index"),
+            routeName: "admin.underbow.*",
+            label: "Manajemen Underbow",
+            icon: <OrganizationIcon />,
+        },
+        {
             href: route("admin.news.index"),
             routeName: "admin.news.*",
             label: "Manajemen Berita",
@@ -274,7 +280,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                         />
                     </Link>
                 </div>
-                <nav className="flex-grow mt-4">
+                <nav className="flex-grow mt-4 space-y-1">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}

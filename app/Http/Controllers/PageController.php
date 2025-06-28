@@ -9,6 +9,7 @@ use App\Models\Member;
 use App\Models\Gallery;
 use App\Models\Message;
 use App\Models\Activity;
+use App\Models\Underbow;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\OrganizationSetting;
@@ -26,11 +27,22 @@ class PageController extends Controller
             // Ambil 12 foto galeri terbaru
             'galleries' => Gallery::latest()->take(12)->get(),
             'settings' => $settings,
+            'underbows' => Underbow::latest()->get(),
+        ]);
+    }
+
+    public function about()
+    {
+        $settings = OrganizationSetting::firstOrCreate([]);
+
+        return Inertia::render('About', [
+            'settings' => $settings,
         ]);
     }
 
     public function structure()
     {
+        $settings = OrganizationSetting::firstOrCreate([]);
         $currentPeriod = date('Y'); // Mengambil tahun saat ini, misal: "2025"
         $allMembers = Member::where('period', $currentPeriod)
                             ->orderBy('id', 'asc') // Urutan awal dari database
@@ -85,6 +97,17 @@ class PageController extends Controller
         return Inertia::render('Structure', [
             'pengurusHarian' => $pengurusHarian,
             'divisi' => $divisi,
+            'settings' => $settings,
+        ]);
+    }
+
+    public function underbow()
+    {
+        $settings = OrganizationSetting::firstOrCreate([]);
+
+        return Inertia::render('Underbow', [
+            'settings' => $settings,
+            'underbows' => Underbow::latest()->get(),
         ]);
     }
 
@@ -112,6 +135,7 @@ class PageController extends Controller
      */
     public function newsIndex(Request $request)
     {
+        $settings = OrganizationSetting::firstOrCreate([]);
         $query = News::query()
             ->with('user:id,name') // Ambil nama penulis
             ->whereNotNull('published_at');
@@ -153,6 +177,7 @@ class PageController extends Controller
         return Inertia::render('News', [
             'newsData' => $news,
             'filters' => $request->only(['search', 'sort']),
+            'settings' => $settings,
         ]);
     }
 
@@ -165,6 +190,15 @@ class PageController extends Controller
         // Anda perlu membuat halaman 'NewsDetail.jsx' untuk ini
         return Inertia::render('ReadNews', [
             'news' => $news
+        ]);
+    }
+
+    public function contact()
+    {
+        $settings = OrganizationSetting::firstOrCreate([]);
+
+        return Inertia::render('Contact', [
+            'settings' => $settings,
         ]);
     }
 

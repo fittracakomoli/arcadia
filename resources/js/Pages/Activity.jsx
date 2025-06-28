@@ -78,7 +78,7 @@ export default function Activity({
                             Linimasa Program Kerja
                         </h2>
                         <p className="text-gray-600 mt-2">
-                            Jejak langkah Kabinet Arcadia selama satu periode.
+                            Jejak langkah Kabinet selama satu periode.
                         </p>
                     </div>
                     {allActivities && allActivities.length > 0 ? (
@@ -164,7 +164,7 @@ export default function Activity({
                         </h2>
                         <p className="text-gray-600 mt-2">
                             Kegiatan reguler untuk pengembangan dan kebersamaan
-                            anggota.
+                            Keluarga Mahasiswa.
                         </p>
                     </div>
                     {agendas && agendas.length > 0 ? (

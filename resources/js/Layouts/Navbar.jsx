@@ -4,7 +4,8 @@ import { useState } from "react";
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null); // State untuk dropdown
-    const { url } = usePage(); // Dapatkan URL saat ini untuk menandai link aktif
+    const { url, props } = usePage(); // Dapatkan URL dan props
+    const { settings } = props; // <-- 1. Ambil settings dari props
 
     // Daftar link navigasi untuk memudahkan pengelolaan
     const navLinks = [
@@ -12,20 +13,20 @@ export default function Navbar() {
         {
             label: "Tentang",
             dropdown: [
-                { href: "/about", label: "Tentang Hima Ilkom" },
+                { href: route("about"), label: "Tentang Hima Ilkom" },
                 {
                     href: route("structure.index"),
                     label: "Struktur Organisasi",
                 },
                 {
-                    href: "/underbow",
+                    href: route("underbow"),
                     label: "Kenali Underbow",
                 },
             ],
         },
         { href: route("activity.index"), label: "Aktivitas" },
         { href: route("news.index"), label: "Berita" },
-        { href: route("contact.index"), label: "Kontak" },
+        { href: route("contact"), label: "Kontak" },
     ];
 
     return (
@@ -33,11 +34,11 @@ export default function Navbar() {
         <nav className="bg-white backdrop-blur-md w-full fixed top-0 start-0 z-50 p-4 md:py-0 shadow-md">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                 <Link
-                    href="/"
+                    href={route("home")}
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
                     <img
-                        src="/assets/logo-horizontal.png"
+                        src={`storage/${settings.logo_horizontal_path}`}
                         className="h-12"
                         alt="Arcadia Logo"
                     />
@@ -98,24 +99,21 @@ export default function Navbar() {
                         {navLinks.map((link) => {
                             let isActive;
                             if (link.dropdown) {
-                                // Untuk dropdown, cek apakah path URL saat ini diawali dengan salah satu path item dropdown
-                                isActive = link.dropdown.some((item) =>
-                                    url.startsWith(item.href)
-                                );
+                                // LOGIKA YANG DIPERBAIKI:
+                                // Cek apakah path URL saat ini diawali dengan salah satu path dari item dropdown.
+                                isActive = link.dropdown.some((item) => {
+                                    const itemPath = new URL(item.href)
+                                        .pathname;
+                                    // Item dropdown tidak mungkin '/', jadi pengecekan startWith sudah aman.
+                                    return url.startsWith(itemPath);
+                                });
                             } else {
-                                let path;
-                                try {
-                                    // Coba ekstrak path dari URL absolut (hasil dari route())
-                                    path = new URL(link.href).pathname;
-                                } catch (e) {
-                                    // Jika gagal (karena href adalah path relatif seperti "/" atau "/contact"), gunakan href itu sendiri
-                                    path = link.href;
-                                }
-                                // Pengecekan: khusus untuk beranda harus sama persis, untuk yang lain cukup diawali dengan path
+                                // Logika untuk link biasa (sudah benar)
+                                const linkPath = new URL(link.href).pathname;
                                 isActive =
-                                    path === "/"
-                                        ? url === "/"
-                                        : url.startsWith(path);
+                                    linkPath === "/"
+                                        ? url === linkPath
+                                        : url.startsWith(linkPath);
                             }
 
                             if (link.dropdown) {

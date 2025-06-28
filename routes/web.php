@@ -12,35 +12,24 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\UnderbowController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrganizationSettingController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
-Route::get('/about', function () {
-    return Inertia::render('About', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Route::get('/structure', [PageController::class, 'structure'])->name('structure.index');
 
-Route::get('/underbow', function () {
-    return Inertia::render('Underbow', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/underbow', [PageController::class, 'underbow'])->name('underbow');
 
 Route::get('/activity', [PageController::class, 'activity'])->name('activity.index');
 
 Route::get('/news', [PageController::class, 'newsIndex'])->name('news.index');
 Route::get('/news/{news:slug}', [PageController::class, 'newsShow'])->name('news.show');
 
-Route::get('/contact', function () { return Inertia::render('Contact'); })->name('contact.index');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'sendContactMessage'])->name('contact.send');
 
 Route::middleware('auth')->group(function () {
@@ -54,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
         Route::get('organization', [OrganizationSettingController::class, 'index'])->name('organization.index');
         Route::post('organization', [OrganizationSettingController::class, 'update'])->name('organization.update');
+        Route::resource('underbow', UnderbowController::class);
         Route::resource('news', NewsController::class);
         Route::resource('members', MemberController::class);
         Route::resource('activities', ActivityController::class);

@@ -18,9 +18,14 @@ class OrganizationSetting extends Model
         'google_maps_link'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
         'mission' => 'array',
-        'contacts' => 'array',
         'logo_philosophy' => 'array',
+        'contacts' => 'array',
     ];
 }

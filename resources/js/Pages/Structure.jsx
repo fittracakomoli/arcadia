@@ -44,7 +44,11 @@ const DepartmentSection = ({ title, members }) => (
     </div>
 );
 
-export default function Structure({ pengurusHarian = {}, divisi = {} }) {
+export default function Structure({
+    pengurusHarian = {},
+    divisi = {},
+    settings,
+}) {
     // Tentukan urutan untuk SEMUA grup Pengurus Harian
     const dailyBoardOrder = ["BPH", "Sekretaris", "Bendahara", "PSDO"];
     const dailyBoardGroups = dailyBoardOrder
@@ -79,7 +83,7 @@ export default function Structure({ pengurusHarian = {}, divisi = {} }) {
 
     return (
         <MainLayout>
-            <Head title="Struktur Organisasi - HIMA ILKOM Arcadia 2025" />
+            <Head title="Struktur Organisasi" />
 
             {/* Header Section */}
             <section className="pt-44 pb-16 bg-primary text-white text-center">
@@ -88,7 +92,7 @@ export default function Structure({ pengurusHarian = {}, divisi = {} }) {
                         Struktur Organisasi
                     </h1>
                     <p className="text-lg md:text-xl mt-4">
-                        Kabinet Arcadia 2025
+                        Kabinet {settings.cabinet_name} {settings.period}
                     </p>
                 </div>
             </section>

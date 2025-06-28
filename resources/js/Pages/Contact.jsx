@@ -2,7 +2,7 @@ import { Head, useForm } from "@inertiajs/react"; // <-- Ganti import
 import MainLayout from "@/Layouts/MainLayout";
 import InputError from "@/Components/InputError"; // <-- Tambahkan ini jika belum ada
 
-export default function Contact() {
+export default function Contact({ settings }) {
     // Gunakan useForm untuk manajemen state, error, dan status pengiriman
     const { data, setData, post, processing, errors, wasSuccessful, reset } =
         useForm({
@@ -21,15 +21,14 @@ export default function Contact() {
 
     return (
         <MainLayout>
-            <Head title="Kontak - HIMA ILKOM Arcadia 2025" />
+            <Head title="Kontak" />
             <section className="pt-36 pb-8 bg-primary text-white text-center">
                 <div className="max-w-screen-md mx-auto px-4">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-2">
                         Kontak Kami
                     </h1>
                     <p className="text-lg md:text-xl mt-4">
-                        Hubungi HIMA ILKOM Arcadia untuk pertanyaan, saran, atau
-                        kerjasama.
+                        Hubungi kami untuk pertanyaan, saran, atau kerjasama.
                     </p>
                 </div>
             </section>
@@ -173,7 +172,7 @@ export default function Contact() {
                                         Alamat:
                                     </span>
                                     <br />
-                                    Jl. Pendidikan No. 123, Kota Ilmu, Indonesia
+                                    {settings.address}
                                 </div>
                             </div>
                             {/* Email */}
@@ -202,7 +201,7 @@ export default function Contact() {
                                         Email:
                                     </span>
                                     <br />
-                                    hima.ilkom@arcadia.ac.id
+                                    {settings.email}
                                 </div>
                             </div>
                             {/* Telepon */}
@@ -232,71 +231,46 @@ export default function Contact() {
                                         Telepon:
                                     </span>
                                     <br />
-                                    0812-3456-7890
+                                    {settings.phone}
                                 </div>
                             </div>
                             {/* Kontak Ketua Himpunan */}
-                            <div className="flex items-start gap-3">
-                                <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10">
-                                    {/* User Icon */}
-                                    <svg
-                                        class="w-6 h-6 text-gray-800 dark:text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
+                            {settings.contacts &&
+                                settings.contacts.map((contact, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-start gap-3"
                                     >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                        />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <span className="font-semibold">
-                                        Ketua Himpunan:
-                                    </span>
-                                    <br />
-                                    Andi Pratama
-                                    <br />
-                                    0813-1234-5678
-                                </div>
-                            </div>
-                            {/* Kontak Kerjasama */}
-                            <div className="flex items-start gap-3">
-                                <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10">
-                                    {/* Handshake Icon */}
-                                    <svg
-                                        class="w-6 h-6 text-gray-800 dark:text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M3 19V6a1 1 0 0 1 1-1h4.032a1 1 0 0 1 .768.36l1.9 2.28a1 1 0 0 0 .768.36H16a1 1 0 0 1 1 1v1M3 19l3-8h15l-3 8H3Z"
-                                        />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <span className="font-semibold">
-                                        Kontak Kerjasama:
-                                    </span>
-                                    <br />
-                                    Budi Santoso
-                                    <br />
-                                    0822-9876-5432
-                                </div>
-                            </div>
+                                        <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10 flex-shrink-0">
+                                            <svg
+                                                class="w-6 h-6 text-gray-800 dark:text-white"
+                                                aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke="currentColor"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <div>
+                                            <span className="font-semibold">
+                                                {contact.title}:
+                                            </span>
+                                            <br />
+                                            {contact.name}
+                                            <br />
+                                            {contact.phone_number}
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </div>
@@ -310,7 +284,7 @@ export default function Contact() {
                     <div className="rounded-lg overflow-hidden shadow-md">
                         <iframe
                             title="Lokasi HIMA ILKOM Arcadia"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344.94586278628657!2d110.39396708393603!3d-7.0513197233489775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708bdbb1512c33%3A0x2c62649d51c1add5!2sPKM%20FMIPA!5e1!3m2!1sid!2sid!4v1750829550377!5m2!1sid!2sid"
+                            src={settings.google_maps_link}
                             width="100%"
                             height="450"
                             style={{ border: 0 }}

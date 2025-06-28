@@ -2,7 +2,12 @@ import { Head, Link } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 import { useState, useEffect } from "react"; // Impor useState dan useEffect
 
-export default function Home({ settings, latestNews = [], galleries = [] }) {
+export default function Home({
+    settings,
+    latestNews = [],
+    galleries = [],
+    underbows = [],
+}) {
     // Mendapatkan daftar kategori unik dari data gambar
     const categories = [
         "Semua",
@@ -26,9 +31,7 @@ export default function Home({ settings, latestNews = [], galleries = [] }) {
 
     return (
         <MainLayout>
-            <Head
-                title={`${settings.cabinet_name} ${settings.period}`}
-            />
+            <Head title={`${settings.cabinet_name} ${settings.period}`} />
 
             {/* Hero Section Start */}
             <section className="relative pt-36 pb-24 md:pt-72 md:pb-48 flex items-center justify-center text-center text-white">
@@ -55,13 +58,13 @@ export default function Home({ settings, latestNews = [], galleries = [] }) {
                     </p>
                     <div className="flex gap-4 items-center justify-center">
                         <Link
-                            href="/about/hima-ilkom"
+                            href={route("activity.index")}
                             className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105"
                         >
                             Lebih Dekat
                         </Link>
                         <Link
-                            href="/about/hima-ilkom"
+                            href={route("contact")}
                             className="inline-block bg-transparent border border-white hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-secondary"
                         >
                             Kerja Sama
@@ -75,33 +78,26 @@ export default function Home({ settings, latestNews = [], galleries = [] }) {
                     <h2 className="text-3xl font-bold text-center text-primary mb-12">
                         Kolaborasi Aktif Underbow
                     </h2>
+                    {/* 2. Ganti bagian statis dengan loop dinamis */}
                     <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 md:gap-x-16">
-                        {/* Ganti src dengan path logo Anda. Ukuran ideal adalah SVG atau PNG transparan. */}
-                        <img
-                            src="/assets/AL-HUSNA.png"
-                            alt="Logo Mitra Satu"
-                            className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
-                        />
-                        <img
-                            src="/assets/PALATIKOM.png"
-                            alt="Logo Mitra Dua"
-                            className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
-                        />
-                        <img
-                            src="/assets/I-SECRET.png"
-                            alt="Logo Mitra Tiga"
-                            className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
-                        />
-                        <img
-                            src="/assets/BSO-KWU.png"
-                            alt="Logo Mitra Empat"
-                            className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
-                        />
-                        <img
-                            src="/assets/SCREENSHOT.png"
-                            alt="Logo Mitra Lima"
-                            className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
-                        />
+                        {underbows.length > 0 ? (
+                            underbows.map((underbow) => (
+                                <img
+                                    key={underbow.id}
+                                    src={
+                                        underbow.logo_path
+                                            ? `/storage/${underbow.logo_path}`
+                                            : "https://via.placeholder.com/150"
+                                    }
+                                    alt={`Logo ${underbow.name}`}
+                                    className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
+                                />
+                            ))
+                        ) : (
+                            <p className="text-gray-500">
+                                Data underbow belum tersedia.
+                            </p>
+                        )}
                     </div>
                 </div>
             </section>

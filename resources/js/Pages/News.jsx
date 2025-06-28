@@ -56,7 +56,7 @@ const NewsCard = ({
     );
 };
 
-export default function News({ newsData, filters }) {
+export default function News({ newsData, filters, settings }) {
     console.log("ISI newsData:", newsData);
     console.log("ISI filters:", filters);
     const [searchTerm, setSearchTerm] = useState(filters.search || "");
@@ -86,7 +86,7 @@ export default function News({ newsData, filters }) {
 
     return (
         <MainLayout>
-            <Head title="Berita - HIMA ILKOM Arcadia 2025" />
+            <Head title="Berita" />
 
             {/* Header Section */}
             <section className="pt-36 pb-16 bg-primary text-white text-center">
@@ -95,7 +95,7 @@ export default function News({ newsData, filters }) {
                         Berita & Informasi
                     </h1>
                     <p className="text-lg md:text-xl mt-4">
-                        Kumpulan kabar terbaru dari HIMA ILKOM Arcadia
+                        Kumpulan kabar terbaru dari {settings.organization_name} {settings.cabinet_name}
                     </p>
                 </div>
             </section>
@@ -144,7 +144,7 @@ export default function News({ newsData, filters }) {
                                 {newsData.data.map((news) => (
                                     <div
                                         key={news.id}
-                                        className="w-full md:w-1/2 lg:w-1/3"
+                                        className="w-full md:w-1/2 lg:w-96"
                                     >
                                         <NewsCard {...news} />
                                     </div>

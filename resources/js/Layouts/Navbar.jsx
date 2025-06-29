@@ -37,11 +37,19 @@ export default function Navbar() {
                     href={route("home")}
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
-                    <img
-                        src={`storage/${settings.logo_horizontal_path}`}
-                        className="h-12"
-                        alt="Arcadia Logo"
-                    />
+                    {settings.logo_horizontal_path ? (
+                        <img
+                            src={`/storage/${settings.logo_horizontal_path}`}
+                            className="h-12"
+                            alt={`${
+                                settings.organization_name || "Arcadia"
+                            } Logo`}
+                        />
+                    ) : (
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">
+                            {settings.organization_name || "Nama Organisasi"}
+                        </span>
+                    )}
                 </Link>
 
                 {/* Daftar Link Navigasi */}

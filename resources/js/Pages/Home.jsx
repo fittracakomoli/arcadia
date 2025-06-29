@@ -31,16 +31,22 @@ export default function Home({
 
     return (
         <MainLayout>
-            <Head title={`${settings.cabinet_name} ${settings.period}`} />
+            <Head
+                title={`${settings.cabinet_name || "Nama Kabinet"} ${
+                    settings.period || "Periode"
+                }`}
+            />
 
             {/* Hero Section Start */}
             <section className="relative pt-36 pb-24 md:pt-72 md:pb-48 flex items-center justify-center text-center text-white">
                 {/* Background Image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center"
+                    className="absolute inset-0 bg-cover bg-center bg-gray-100"
                     // Ganti URL ini dengan gambar Anda sendiri, misalnya '/assets/hero-image.jpg'
                     style={{
-                        backgroundImage: `url(/storage/${settings.cover_photo_path})`,
+                        backgroundImage: settings.cover_photo_path
+                            ? `url(/storage/${settings.cover_photo_path})`
+                            : "none",
                     }}
                 ></div>
 
@@ -51,10 +57,10 @@ export default function Home({
                 {/* Konten Teks */}
                 <div className="relative z-10 p-4">
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                        {settings.headline}
+                        {settings.headline || "Selamat Datang di Arcadia"}
                     </h1>
                     <p className="text-lg md:text-xl mb-8 max-w-screen-lg mx-auto">
-                        {settings.tagline}
+                        {settings.tagline || "Tagline organisasi belum diatur."}
                     </p>
                     <div className="flex gap-4 items-center justify-center">
                         <Link
@@ -95,7 +101,7 @@ export default function Home({
                             ))
                         ) : (
                             <p className="text-gray-500">
-                                Data underbow belum tersedia.
+                                Underbow belum ditambahkan.
                             </p>
                         )}
                     </div>
@@ -115,45 +121,59 @@ export default function Home({
                     </div>
 
                     {/* Bagian Berita menjadi dinamis */}
-                    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {latestNews.map((news) => (
-                            <article
-                                key={news.id}
-                                className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2"
-                            >
-                                <Link href={route("news.show", news.slug)}>
-                                    <img
-                                        src={`/storage/${news.image_path}`}
-                                        alt={news.title}
-                                        className="w-full h-48 object-cover"
-                                    />
-                                </Link>
-                                <div className="p-6">
-                                    <span className="text-sm font-semibold text-secondary">
-                                        {news.category}
-                                    </span>
-                                    <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors">
-                                        <Link
-                                            href={route("news.show", news.slug)}
-                                        >
-                                            {news.title}
-                                        </Link>
-                                    </h3>
-                                    <p className="mt-2 text-gray-600 text-sm line-clamp-3">
-                                        {news.excerpt}
-                                    </p>
-                                    <div className="mt-4">
-                                        <Link
-                                            href={route("news.show", news.slug)}
-                                            className="text-primary font-semibold hover:text-secondary transition-colors"
-                                        >
-                                            Baca Selengkapnya &rarr;
-                                        </Link>
+                    {latestNews.length > 0 ? (
+                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {latestNews.map((news) => (
+                                <article
+                                    key={news.id}
+                                    className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2"
+                                >
+                                    <Link href={route("news.show", news.slug)}>
+                                        <img
+                                            src={`/storage/${news.image_path}`}
+                                            alt={news.title}
+                                            className="w-full h-48 object-cover"
+                                        />
+                                    </Link>
+                                    <div className="p-6">
+                                        <span className="text-sm font-semibold text-secondary">
+                                            {news.category}
+                                        </span>
+                                        <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors">
+                                            <Link
+                                                href={route(
+                                                    "news.show",
+                                                    news.slug
+                                                )}
+                                            >
+                                                {news.title}
+                                            </Link>
+                                        </h3>
+                                        <p className="mt-2 text-gray-600 text-sm line-clamp-3">
+                                            {news.excerpt}
+                                        </p>
+                                        <div className="mt-4">
+                                            <Link
+                                                href={route(
+                                                    "news.show",
+                                                    news.slug
+                                                )}
+                                                className="text-primary font-semibold hover:text-secondary transition-colors"
+                                            >
+                                                Baca Selengkapnya &rarr;
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-10">
+                            <p className="text-gray-500">
+                                Berita belum ditambahkan.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </section>
             <section className="py-16 bg-gray-50">
@@ -161,13 +181,15 @@ export default function Home({
                     {/* Kolom Kiri: Teks Penjelasan */}
                     <div className="text-left">
                         <h2 className="text-3xl font-bold text-primary mb-4">
-                            Tentang {settings.organization_name}
+                            Tentang {settings.organization_name || "Organisasi"}
                         </h2>
                         <p className="text-xl font-semibold text-gray-700 mb-4">
-                            Kabinet {settings.cabinet_name} {settings.period}
+                            Kabinet {settings.cabinet_name || "Nama Kabinet"}{" "}
+                            {settings.period || "Periode"}
                         </p>
                         <p className="text-gray-600 mb-6 leading-relaxed">
-                            {settings.definition}
+                            {settings.definition ||
+                                "Definisi organisasi belum diatur."}
                         </p>
                         <Link
                             href="/about"
@@ -181,8 +203,12 @@ export default function Home({
                     <div className="flex justify-center items-center order-first md:order-last">
                         {/* Ganti src dengan path logo HIMA ILKOM Anda */}
                         <img
-                            src={`/storage/${settings.logo_full_path}`}
-                            alt="Logo HIMA ILKOM"
+                            src={
+                                settings.logo_full_path
+                                    ? `/storage/${settings.logo_full_path}`
+                                    : "https://via.placeholder.com/256"
+                            }
+                            alt="Logo Organisasi"
                             className="h-48 md:h-64 object-contain"
                         />
                     </div>
@@ -245,7 +271,7 @@ export default function Home({
                         </div>
                     ) : (
                         <p className="text-center text-gray-500">
-                            Galeri kegiatan akan segera diperbarui.
+                            Galeri kegiatan belum ditambahkan.
                         </p>
                     )}
                 </div>
@@ -263,19 +289,23 @@ export default function Home({
                     </div>
 
                     {/* Container untuk membuat video responsif */}
-                    <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
-                        {/* 
-                          Ganti 'dQw4w9WgXcQ' dengan ID video YouTube Anda.
-                          Contoh: jika URL video adalah https://www.youtube.com/watch?v=abcdef123, maka ID-nya adalah 'abcdef123'.
-                        */}
-                        <iframe
-                            className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${settings.video_profile_link}`}
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
+                    {settings.video_profile_link ? (
+                        <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
+                            <iframe
+                                className="w-full h-full"
+                                src={`https://www.youtube.com/embed/${settings.video_profile_link}`}
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    ) : (
+                        <div className="text-center py-10">
+                            <p className="text-gray-500">
+                                Video profil belum ditambahkan.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </section>
         </MainLayout>

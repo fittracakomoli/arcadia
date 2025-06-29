@@ -10,11 +10,20 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div>
                         {/* Ganti dengan logo versi terang jika ada */}
-                        <img
-                            src={`storage/${settings.logo_horizontal_path}`}
-                            className="h-10 brightness-0 invert"
-                            alt="Arcadia Logo White"
-                        />
+                        {settings.logo_horizontal_path ? (
+                            <img
+                                src={`/storage/${settings.logo_horizontal_path}`}
+                                className="h-10 brightness-0 invert"
+                                alt={`${
+                                    settings.organization_name || "Arcadia"
+                                } Logo White`}
+                            />
+                        ) : (
+                            <h2 className="text-2xl font-bold text-white">
+                                {settings.organization_name ||
+                                    "Nama Organisasi"}
+                            </h2>
+                        )}
                         <p className="mt-6 max-w-xs text-gray-300">
                             Himpunan Mahasiswa Ilmu Komputer, Fakultas
                             Matematika dan Ilmu Pengetahuan Alam, Universitas
@@ -77,16 +86,23 @@ export default function Footer() {
                             <p className="font-medium">Kontak</p>
                             <ul className="mt-8 space-y-4 text-sm">
                                 <li>
-                                    <a
-                                        href={`mailto:${settings.email}`}
-                                        className="text-gray-300 transition hover:text-white"
-                                    >
-                                        {settings.email}
-                                    </a>
+                                    {settings.email ? (
+                                        <a
+                                            href={`mailto:${settings.email}`}
+                                            className="text-gray-300 transition hover:text-white"
+                                        >
+                                            {settings.email}
+                                        </a>
+                                    ) : (
+                                        <span className="text-gray-400">
+                                            Email belum ditambahkan.
+                                        </span>
+                                    )}
                                 </li>
                                 <li>
                                     <span className="text-gray-300">
-                                        {settings.address}
+                                        {settings.address ||
+                                            "Alamat belum ditambahkan."}
                                     </span>
                                 </li>
                             </ul>
@@ -96,9 +112,10 @@ export default function Footer() {
 
                 <div className="pt-6 mt-12 border-t border-white">
                     <div className="text-center">
-                        <p className="text-sm text-white">
-                            &copy; {settings.period}{" "}
-                            {settings.organization_name}. All rights reserved.
+                        <p className="text-sm text-gray-300">
+                            &copy; {settings.period || new Date().getFullYear()}{" "}
+                            {settings.organization_name || "Nama Organisasi"}.
+                            All rights reserved.
                         </p>
                     </div>
                 </div>

@@ -194,7 +194,8 @@ const LogoutIcon = () => (
 );
 
 export default function Sidebar({ isOpen, setIsOpen }) {
-    const { url } = usePage();
+    const { url, props } = usePage(); // Dapatkan URL dan props
+    const { settings } = props; // <-- 1. Ambil settings dari props
     const navLinks = [
         {
             href: route("admin.dashboard"),
@@ -273,11 +274,20 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             >
                 <div className="p-4 flex items-center justify-center border-b border-white">
                     <Link href="/">
-                        <img
-                            src="/assets/logo-horizontal-white.png"
-                            alt="Arcadia Logo"
-                            className="h-10"
-                        />
+                        {settings.logo_horizontal_path ? (
+                            <img
+                                src={`/storage/${settings.logo_horizontal_path}`}
+                                className="h-10 brightness-0 invert"
+                                alt={`${
+                                    settings.organization_name || "Arcadia"
+                                } Logo White`}
+                            />
+                        ) : (
+                            <h2 className="text-2xl font-bold text-white">
+                                {settings.organization_name ||
+                                    "Nama Organisasi"}
+                            </h2>
+                        )}
                     </Link>
                 </div>
                 <nav className="flex-grow mt-4 space-y-1">

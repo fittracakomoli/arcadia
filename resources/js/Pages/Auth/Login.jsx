@@ -83,30 +83,6 @@ export default function Login({ status, canResetPassword }) {
                         />
                     </div>
 
-                    <div className="flex items-center justify-between mt-4">
-                        <label className="flex items-center">
-                            <Checkbox
-                                name="remember"
-                                checked={data.remember}
-                                onChange={(e) =>
-                                    setData("remember", e.target.checked)
-                                }
-                            />
-                            <span className="ms-2 text-sm text-primary">
-                                Ingat Saya
-                            </span>
-                        </label>
-
-                        {canResetPassword && (
-                            <Link
-                                href={route("password.request")}
-                                className="text-sm text-primary hover:underline rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                            >
-                                Lupa password?
-                            </Link>
-                        )}
-                    </div>
-
                     <div className="mt-6">
                         <PrimaryButton
                             className="w-full justify-center py-3"

@@ -172,7 +172,8 @@ export default function Contact({ settings }) {
                                         Alamat:
                                     </span>
                                     <br />
-                                    {settings.address}
+                                    {settings.address ||
+                                        "Alamat belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Email */}
@@ -201,7 +202,8 @@ export default function Contact({ settings }) {
                                         Email:
                                     </span>
                                     <br />
-                                    {settings.email}
+                                    {settings.email ||
+                                        "Email belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Telepon */}
@@ -231,11 +233,13 @@ export default function Contact({ settings }) {
                                         Telepon:
                                     </span>
                                     <br />
-                                    {settings.phone}
+                                    {settings.phone ||
+                                        "Telepon belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Kontak Ketua Himpunan */}
                             {settings.contacts &&
+                                settings.contacts.length > 0 &&
                                 settings.contacts.map((contact, index) => (
                                     <div
                                         key={index}
@@ -243,31 +247,29 @@ export default function Contact({ settings }) {
                                     >
                                         <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10 flex-shrink-0">
                                             <svg
-                                                class="w-6 h-6 text-gray-800 dark:text-white"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
+                                                className="w-6 h-6"
                                                 fill="none"
+                                                stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                             >
                                                 <path
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                                                 />
                                             </svg>
                                         </span>
                                         <div>
                                             <span className="font-semibold">
-                                                {contact.title}:
+                                                {contact.title || "Kontak"}:
                                             </span>
                                             <br />
-                                            {contact.name}
+                                            {contact.name ||
+                                                "Nama belum diatur"}
                                             <br />
-                                            {contact.phone_number}
+                                            {contact.phone_number ||
+                                                "Nomor belum diatur"}
                                         </div>
                                     </div>
                                 ))}
@@ -281,18 +283,24 @@ export default function Contact({ settings }) {
                     <h2 className="text-2xl font-bold text-primary mb-6 text-center">
                         Lokasi Kami
                     </h2>
-                    <div className="rounded-lg overflow-hidden shadow-md">
-                        <iframe
-                            title="Lokasi HIMA ILKOM Arcadia"
-                            src={settings.google_maps_link}
-                            width="100%"
-                            height="450"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
-                    </div>
+                    {settings.google_maps_link ? (
+                        <div className="rounded-lg overflow-hidden shadow-md">
+                            <iframe
+                                title="Lokasi HIMA ILKOM Arcadia"
+                                src={settings.google_maps_link}
+                                width="100%"
+                                height="450"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    ) : (
+                        <div className="text-center text-gray-500 py-10">
+                            Peta lokasi belum ditambahkan.
+                        </div>
+                    )}
                 </div>
             </section>
         </MainLayout>

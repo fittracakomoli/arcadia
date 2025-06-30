@@ -92,7 +92,7 @@ export default function Structure({
                         Struktur Organisasi
                     </h1>
                     <p className="text-lg md:text-xl mt-4">
-                        Kabinet {settings.cabinet_name} {settings.period}
+                        Susunan Pengurus dan Garis Koordinasi
                     </p>
                 </div>
             </section>

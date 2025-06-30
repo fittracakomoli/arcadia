@@ -1,6 +1,6 @@
 import { Head, Link } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
-import { useState, useEffect } from "react"; // Impor useState dan useEffect
+import { useState, useEffect } from "react";
 
 export default function Home({
     settings,
@@ -89,7 +89,6 @@ export default function Home({
                         {underbows.length > 0 ? (
                             underbows.map((underbow) => (
                                 <img
-                                    key={underbow.id}
                                     src={
                                         underbow.logo_path
                                             ? `/storage/${underbow.logo_path}`

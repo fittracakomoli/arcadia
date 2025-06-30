@@ -56,7 +56,7 @@ export default function Navbar() {
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     type="button"
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-primary rounded-lg md:hidden hover:text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
                     aria-controls="navbar-default"
                     aria-expanded={isMenuOpen}
                 >
@@ -81,14 +81,14 @@ export default function Navbar() {
                     className={`
                         fixed top-0 right-0 h-screen w-1/2 bg-white p-5 transition-transform duration-300 ease-in-out z-50
                         ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
-                        md:relative md:translate-x-0 md:h-auto md:w-auto md:bg-transparent md:shadow-none md:p-0 md:block
+                        md:relative md:translate-x-0 md:h-auto md:w-auto md:bg-transparent md:shadow-none shadow-lg md:p-0 md:block
                     `}
                     id="navbar-slide"
                 >
                     <div className="flex justify-end mb-4 md:hidden">
                         <button onClick={() => setIsMenuOpen(false)}>
                             <svg
-                                className="w-6 h-6 text-gray-700"
+                                className="w-6 h-6 text-primary"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"

@@ -31,7 +31,10 @@ export default function ReadNews() {
                         <span className="bg-secondary px-3 py-1 rounded-full">
                             {data.category}
                         </span>
-                        <span>{formatDate(data.published_at)}</span>
+                        <span className="font-semibold">
+                            {formatDate(data.published_at)}
+                        </span>
+                        <span>oleh {data.user.name}</span>
                     </div>
                 </div>
             </section>

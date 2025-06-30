@@ -95,8 +95,7 @@ export default function News({ newsData, filters, settings }) {
                         Berita & Informasi
                     </h1>
                     <p className="text-lg md:text-xl mt-4">
-                        Kumpulan kabar terbaru dari {settings.organization_name}{" "}
-                        {settings.cabinet_name}
+                        Kumpulan Informasi dan Kabar Terbaru dari Kami
                     </p>
                 </div>
             </section>

@@ -188,15 +188,30 @@ const MemberModal = ({ isOpen, onClose, memberToEdit }) => {
                         </div>
                         <div>
                             <InputLabel htmlFor="division" value="Divisi" />
-                            <TextInput
+                            <select
+                                name="division"
                                 id="division"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                                 value={data.division}
                                 onChange={(e) =>
                                     setData("division", e.target.value)
                                 }
                                 required
-                                className="mt-1 block w-full"
-                            />
+                            >
+                                <option value="">Pilih Divisi</option>
+                                <option value="BPH">BPH</option>
+                                <option value="Sekretaris">Sekretaris</option>
+                                <option value="Bendahara">Bendahara</option>
+                                <option value="PSDO">PSDO</option>
+                                <option value="Internal">Internal</option>
+                                <option value="Eksternal">Eksternal</option>
+                                <option value="Sosial Masyarakat">
+                                    Sosial Masyarakat
+                                </option>
+                                <option value="Komunikasi Informasi">
+                                    Komunikasi Informasi
+                                </option>
+                            </select>
                             <InputError
                                 message={errors.division}
                                 className="mt-2"

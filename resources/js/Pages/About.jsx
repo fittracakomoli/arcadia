@@ -1,8 +1,7 @@
 import { Head, usePage } from "@inertiajs/react";
 import MainLayout from "@/Layouts/MainLayout";
 
-export default function About() {
-    const { settings } = usePage().props;
+export default function About({ settings }) {
     return (
         <MainLayout>
             <Head title="Tentang" />
@@ -50,7 +49,8 @@ export default function About() {
                         <p className="text-gray-600 mt-2">
                             Landasan Gerak dan Arah{" "}
                             {settings.organization_name || "Organisasi"} Kabinet{" "}
-                            {settings.cabinet_name || ""}
+                            {settings.cabinet_name || ""}{" "}
+                            {settings.period || ""}
                         </p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-12 items-start">

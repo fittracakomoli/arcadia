@@ -138,9 +138,39 @@ export default function Contact({ settings }) {
                             Informasi Kontak
                         </h2>
                         <div className="mb-8 space-y-4 text-gray-700">
-                            {/* Alamat */}
+                            {/* Email */}
                             <div className="flex items-start gap-3">
                                 <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10">
+                                    {/* Email Icon */}
+                                    <svg
+                                        class="w-6 h-6 text-gray-800 dark:text-white"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-width="2"
+                                            d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
+                                        />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span className="font-semibold">
+                                        Email:
+                                    </span>
+                                    <br />
+                                    {settings.email ||
+                                        "Email belum ditambahkan."}
+                                </div>
+                            </div>
+                            {/* Alamat */}
+                            <div className="flex items-start gap-3">
+                                <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10 p-2">
                                     {/* Map Pin Icon */}
                                     <svg
                                         class="w-6 h-6 text-gray-800 dark:text-white"
@@ -174,36 +204,6 @@ export default function Contact({ settings }) {
                                     <br />
                                     {settings.address ||
                                         "Alamat belum ditambahkan."}
-                                </div>
-                            </div>
-                            {/* Email */}
-                            <div className="flex items-start gap-3">
-                                <span className="inline-flex items-center justify-center bg-primary text-white rounded-full w-10 h-10">
-                                    {/* Email Icon */}
-                                    <svg
-                                        class="w-6 h-6 text-gray-800 dark:text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-width="2"
-                                            d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
-                                        />
-                                    </svg>
-                                </span>
-                                <div>
-                                    <span className="font-semibold">
-                                        Email:
-                                    </span>
-                                    <br />
-                                    {settings.email ||
-                                        "Email belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Telepon */}

@@ -20,14 +20,15 @@ class PageController extends Controller
     public function home()
     {
         $settings = OrganizationSetting::firstOrCreate([]);
+        $underbows = Underbow::latest()->get();
+        $news = News::latest()->take(3)->get();
+        $gallery = Gallery::latest()->take(12)->get();
 
         return Inertia::render('Home', [
-            // Ambil 3 berita terbaru
-            'latestNews' => News::latest()->take(3)->get(),
-            // Ambil 12 foto galeri terbaru
-            'galleries' => Gallery::latest()->take(12)->get(),
-            'settings' => $settings,
-            'underbows' => Underbow::latest()->get(),
+            'latestNews' => $news->select('title', 'category', 'image_path', 'slug'),
+            'galleries' => $gallery->select('category', 'image_path'),
+            'settings' => $settings->except('id', 'logo_vertical_path', 'vision', 'mission', 'name_philosophy', 'logo_philosophy', 'contacts', 'google_maps_link', 'created_at', 'updated_at'),
+            'underbows' => $underbows->select('logo_path', 'name'),
         ]);
     }
 
@@ -36,78 +37,40 @@ class PageController extends Controller
         $settings = OrganizationSetting::firstOrCreate([]);
 
         return Inertia::render('About', [
-            'settings' => $settings,
+            'settings' => $settings->except('id', 'cover_photo_path', 'headline', 'tagline', 'video_profile_link', 'phone', 'contacts', 'google_maps_link', 'created_at', 'updated_at'),
         ]);
     }
 
     public function structure()
     {
-        $settings = OrganizationSetting::firstOrCreate([]);
         $currentPeriod = date('Y'); // Mengambil tahun saat ini, misal: "2025"
         $allMembers = Member::where('period', $currentPeriod)
+                            ->select('id', 'name', 'position', 'division', 'photo_path') // Menghindari kolom yang tidak perlu
                             ->orderBy('id', 'asc') // Urutan awal dari database
                             ->get()
                             ->groupBy('division');
-
-        // --- LOGIKA PENGURUTAN KUSTOM BARU ---
-        $sortedMembers = $allMembers->map(function ($membersInDivision, $divisionName) {
-            $order = [];
-
-            // Tentukan urutan prioritas jabatan untuk setiap grup
-            switch ($divisionName) {
-                case 'PSDO':
-                    $order = ['Kepala Biro' => 1, 'Sekretaris Biro' => 2];
-                    break;
-                case 'Ekonomi Kreatif':
-                    $order = ['Kepala Divisi' => 1, 'Bendahara Divisi' => 2, 'Sekretaris Divisi' => 3];
-                    break;
-                // Untuk semua divisi lain yang mengikuti pola standar
-                case 'Internal':
-                case 'Eksternal':
-                case 'Sosial Masyarakat':
-                case 'Komunikasi Informasi':
-                    $order = ['Kepala Divisi' => 1, 'Wakil Kepala Divisi' => 2, 'Sekretaris Divisi' => 3];
-                    break;
-                default:
-                    // Untuk 'BPH', 'Sekretaris', 'Bendahara', biarkan urutan default dari database
-                    return $membersInDivision;
-            }
-
-            // Urutkan anggota dalam divisi ini
-            return $membersInDivision->sortBy([
-                // Pertama, urutkan berdasarkan prioritas jabatan yang telah ditentukan.
-                // Jabatan yang tidak ada di peta '$order' akan mendapat prioritas 99 (paling bawah).
-                function ($member) use ($order) {
-                    return $order[$member->position] ?? 99;
-                },
-                // Kedua, jika prioritasnya sama (misal: semua 'Anggota'), urutkan berdasarkan nama A-Z.
-                'name',
-            ]);
-        });
-        // --- AKHIR LOGIKA PENGURUTAN ---
-
 
         // Definisikan grup untuk Pengurus Harian
         $pengurusHarianKeys = ['BPH', 'Sekretaris', 'Bendahara', 'PSDO'];
         
         // Pisahkan data menjadi dua grup besar MENGGUNAKAN DATA YANG SUDAH DIURUTKAN
-        $pengurusHarian = $sortedMembers->filter(fn($v, $k) => in_array($k, $pengurusHarianKeys));
-        $divisi = $sortedMembers->filter(fn($v, $k) => !in_array($k, $pengurusHarianKeys));
+        $pengurusHarian = $allMembers->filter(fn($v, $k) => in_array($k, $pengurusHarianKeys));
+        $divisi = $allMembers->filter(fn($v, $k) => !in_array($k, $pengurusHarianKeys));
 
         return Inertia::render('Structure', [
             'pengurusHarian' => $pengurusHarian,
             'divisi' => $divisi,
-            'settings' => $settings,
         ]);
     }
 
     public function underbow()
     {
         $settings = OrganizationSetting::firstOrCreate([]);
+        $underbows = Underbow::latest()->get();
 
         return Inertia::render('Underbow', [
-            'settings' => $settings,
-            'underbows' => Underbow::latest()->get(),
+            'settings' => $settings->only('organization_name', 'logo_horizontal_path', 'email', 'address'),
+            'underbows' => $underbows->select('logo_path', 'name','description', 'social_media'),
         ]);
     }
 
@@ -115,18 +78,19 @@ class PageController extends Controller
     {
         // Ambil program kerja yang akan datang sebagai featured
         $featuredActivity = Activity::where('start_date', '>=', now())
+                                  ->select('name', 'description', 'start_date', 'end_date', 'image_path')
                                   ->orderBy('start_date', 'asc')
                                   ->first();
 
         // Jika tidak ada proker yang akan datang, ambil yang terakhir dilaksanakan
         if (!$featuredActivity) {
-            $featuredActivity = Activity::orderBy('start_date', 'desc')->first();
+            $featuredActivity = Activity::select('name', 'description', 'start_date', 'end_date', 'image_path')->orderBy('start_date', 'desc')->first();
         }
 
         return Inertia::render('Activity', [
             'featuredActivity' => $featuredActivity,
-            'allActivities' => Activity::orderBy('start_date', 'asc')->get(), // Ambil semua, urutkan dari terbaru
-            'agendas' => Agenda::latest()->get(),
+            'allActivities' => Activity::select('name', 'description', 'start_date', 'end_date', 'image_path')->orderBy('start_date', 'asc')->get(),
+            'agendas' => Agenda::latest()->select('name', 'description', 'image_path')->get(),
         ]);
     }
 
@@ -135,9 +99,8 @@ class PageController extends Controller
      */
     public function newsIndex(Request $request)
     {
-        $settings = OrganizationSetting::firstOrCreate([]);
         $query = News::query()
-            ->with('user:id,name') // Ambil nama penulis
+            ->select('title', 'slug', 'content', 'category', 'image_path', 'published_at')
             ->whereNotNull('published_at');
 
         // Logika Pencarian
@@ -177,7 +140,6 @@ class PageController extends Controller
         return Inertia::render('News', [
             'newsData' => $news,
             'filters' => $request->only(['search', 'sort']),
-            'settings' => $settings,
         ]);
     }
 
@@ -198,7 +160,7 @@ class PageController extends Controller
         $settings = OrganizationSetting::firstOrCreate([]);
 
         return Inertia::render('Contact', [
-            'settings' => $settings,
+            'settings' => $settings->only('logo_horizontal_path', 'address', 'email', 'phone', 'contacts', 'google_maps_link'),
         ]);
     }
 

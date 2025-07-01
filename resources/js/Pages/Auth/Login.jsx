@@ -6,7 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Login({ status, canResetPassword }) {
+export default function Login({ status, canResetPassword, settings }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -32,9 +32,9 @@ export default function Login({ status, canResetPassword }) {
                 <div className="flex justify-center mb-6">
                     <Link href="/">
                         <img
-                            src="/assets/logo-horizontal.png"
-                            alt="Arcadia Logo"
-                            className="h-14"
+                            src={`storage/${settings.logo_horizontal_path}`}
+                            alt={`Logo ${settings.organization_name}`}
+                            className="h-12 w-auto"
                         />
                     </Link>
                 </div>

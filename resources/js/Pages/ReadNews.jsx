@@ -21,7 +21,7 @@ export default function ReadNews() {
 
     return (
         <MainLayout>
-            <Head title={data.title + " - HIMA ILKOM Arcadia 2025"} />
+            <Head title={data.title} />
             <section className="pt-36 pb-8 bg-primary text-white text-center">
                 <div className="max-w-screen-md mx-auto px-4">
                     <h1 className="text-3xl md:text-4xl font-extrabold mb-2">

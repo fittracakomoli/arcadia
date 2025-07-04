@@ -15,12 +15,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $settings = OrganizationSetting::firstOrCreate([]);
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user()
             ],
             // 2. Tambahkan baris ini untuk membagikan settingsAdd commentMore actions
-            'settings' => OrganizationSetting::firstOrCreate([])->only('logo_horizontal_path', 'email', 'address'),
+            'settings' => $settings->only('logo_horizontal_path', 'email', 'address'),
         ]);
     }
 }

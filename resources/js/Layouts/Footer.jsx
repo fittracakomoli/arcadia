@@ -114,8 +114,8 @@ export default function Footer() {
                     <div className="text-center">
                         <p className="text-sm text-gray-300">
                             &copy; {settings.period || new Date().getFullYear()}{" "}
-                            {settings.organization_name || "Nama Organisasi"}.
-                            All rights reserved.
+                            Divisi Komunikasi dan Informasi. All rights
+                            reserved.
                         </p>
                     </div>
                 </div>

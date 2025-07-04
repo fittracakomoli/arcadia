@@ -203,6 +203,9 @@ const MemberModal = ({ isOpen, onClose, memberToEdit }) => {
                                 <option value="Sekretaris">Sekretaris</option>
                                 <option value="Bendahara">Bendahara</option>
                                 <option value="PSDO">PSDO</option>
+                                <option value="Ekonomi Kreatif">
+                                    Ekonomi Kreatif
+                                </option>
                                 <option value="Internal">Internal</option>
                                 <option value="Eksternal">Eksternal</option>
                                 <option value="Sosial Masyarakat">

@@ -30,7 +30,7 @@ class AgendaController extends Controller
         }
 
         Agenda::create($validated);
-        return back();
+        return back()->with('success', 'Agenda berhasil ditambahkan.');
     }
 
     public function update(Request $request, Agenda $agenda)
@@ -50,7 +50,7 @@ class AgendaController extends Controller
         }
 
         $agenda->update($validated);
-        return back();
+        return back()->with('success', 'Agenda berhasil diperbarui.');
     }
 
     public function destroy(Agenda $agenda)
@@ -59,6 +59,6 @@ class AgendaController extends Controller
             Storage::disk('public')->delete($agenda->image_path);
         }
         $agenda->delete();
-        return back();
+        return back()->with('success', 'Agenda berhasil dihapus.');
     }
 }

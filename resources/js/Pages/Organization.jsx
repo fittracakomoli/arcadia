@@ -1,11 +1,90 @@
-import { Head, useForm } from "@inertiajs/react";
-import { useState } from "react";
+import { Head, useForm, usePage } from "@inertiajs/react";
+import { useState, useEffect } from "react";
 import Sidebar from "@/Layouts/Sidebar";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import TextArea from "@/Components/TextArea";
+
+function Notification() {
+    const { flash } = usePage().props;
+    const [show, setShow] = useState(!!(flash.success || flash.error));
+    const [progress, setProgress] = useState(100);
+
+    useEffect(() => {
+        let timer, progressTimer;
+        if (flash.success || flash.error) {
+            setShow(true);
+            setProgress(100);
+
+            // Progress bar animation
+            let width = 100;
+            progressTimer = setInterval(() => {
+                width -= 2;
+                setProgress(width);
+                if (width <= 0) clearInterval(progressTimer);
+            }, 60);
+
+            // Hide after 3s
+            timer = setTimeout(() => setShow(false), 3000);
+        }
+        return () => {
+            clearTimeout(timer);
+            clearInterval(progressTimer);
+        };
+    }, [flash.success, flash.error]);
+
+    if (!show) return null;
+
+    return (
+        <div
+            className={`fixed top-6 right-6 z-50 min-w-[260px] px-6 py-3 rounded shadow-lg text-white flex items-center gap-3 transition
+            ${flash.success ? "bg-green-600" : "bg-red-600"}`}
+        >
+            {/* Icon */}
+            <span className="text-2xl">
+                {flash.success ? (
+                    // Checklist icon
+                    <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                        />
+                    </svg>
+                ) : (
+                    // Cross icon
+                    <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                )}
+            </span>
+            <span className="flex-1">{flash.success || flash.error}</span>
+            {/* Progress bar */}
+            <span
+                className="absolute left-0 bottom-0 h-1 rounded-b bg-white/60 transition-all"
+                style={{ width: `${progress}%` }}
+            />
+        </div>
+    );
+}
 
 const MenuIcon = () => (
     <svg
@@ -47,7 +126,7 @@ const TrashIcon = () => (
     </svg>
 );
 
-export default function Organization({ settings, flash }) {
+export default function Organization({ settings }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { data, setData, post, processing, errors } = useForm({
         organization_name: settings.organization_name || "",
@@ -131,6 +210,7 @@ export default function Organization({ settings, flash }) {
     return (
         <div className="min-h-screen bg-gray-100">
             <Head title="Pengaturan Organisasi" />
+            <Notification />
             <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
             <div className="lg:ml-72">
                 <header className="bg-white shadow-sm p-4 flex items-center justify-between sticky top-0 z-20">
@@ -145,11 +225,6 @@ export default function Organization({ settings, flash }) {
                     </h2>
                 </header>
                 <main className="p-6">
-                    {flash?.success && (
-                        <div className="mb-4 p-4 bg-green-100 text-green-700 border border-green-200 rounded-lg">
-                            {flash.success}
-                        </div>
-                    )}
                     <form
                         onSubmit={submit}
                         className="bg-white rounded-lg shadow p-6 space-y-8"

@@ -21,6 +21,12 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user()
             ],
+
+            'flash' => [
+                'success' => session('success'),
+                'error' => session('error'),
+            ],
+            
             // 2. Tambahkan baris ini untuk membagikan settingsAdd commentMore actions
             'settings' => $settings->only('logo_horizontal_path', 'email', 'address'),
         ]);

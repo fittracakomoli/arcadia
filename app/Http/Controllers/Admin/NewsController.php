@@ -42,7 +42,7 @@ class NewsController extends Controller
             'published_at' => now(),
         ]);
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil ditambahkan.');
     }
 
     public function update(Request $request, News $news)
@@ -71,7 +71,7 @@ class NewsController extends Controller
             'image_path' => $imagePath,
         ]);
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
     public function destroy(News $news)
@@ -83,6 +83,6 @@ class NewsController extends Controller
 
         $news->delete();
 
-        return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus.');
     }
 }

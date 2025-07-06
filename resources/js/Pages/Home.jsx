@@ -138,7 +138,7 @@ export default function Home({
                                         <span className="text-sm font-semibold text-secondary">
                                             {news.category}
                                         </span>
-                                        <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors">
+                                        <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
                                             <Link
                                                 href={route(
                                                     "news.show",

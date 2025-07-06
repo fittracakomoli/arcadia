@@ -42,7 +42,7 @@ class ActivityController extends Controller
         ]);
 
         // Gunakan redirect()->route() untuk konsistensi
-        return redirect()->route('admin.activities.index');
+        return redirect()->route('admin.activities.index')->with('success', 'Aktivitas berhasil ditambahkan.');
     }
 
     public function update(Request $request, Activity $activity)
@@ -73,7 +73,7 @@ class ActivityController extends Controller
         ]);
 
         // Gunakan redirect()->route() untuk konsistensi
-        return redirect()->route('admin.activities.index');
+        return redirect()->route('admin.activities.index')->with('success', 'Aktivitas berhasil diperbarui.');
     }
 
     public function destroy(Activity $activity)
@@ -86,6 +86,6 @@ class ActivityController extends Controller
         $activity->delete();
 
         // Gunakan redirect()->route() untuk konsistensi
-        return redirect()->route('admin.activities.index');
+        return redirect()->route('admin.activities.index')->with('success', 'Aktivitas berhasil dihapus.');
     }
 }

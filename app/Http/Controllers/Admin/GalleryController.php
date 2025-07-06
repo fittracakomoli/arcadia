@@ -36,7 +36,7 @@ class GalleryController extends Controller
             'image_path' => $path,
         ]);
 
-        return redirect()->route('admin.gallery.index');
+        return redirect()->route('admin.gallery.index')->with('success', 'Foto berhasil ditambahkan.');
     }
 
     public function destroy(Gallery $gallery)
@@ -44,6 +44,6 @@ class GalleryController extends Controller
         Storage::disk('public')->delete($gallery->image_path);
         $gallery->delete();
 
-        return redirect()->route('admin.gallery.index');
+        return redirect()->route('admin.gallery.index')->with('success', 'Foto berhasil dihapus.');
     }
 }

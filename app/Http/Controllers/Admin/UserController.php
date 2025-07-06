@@ -53,7 +53,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Berhasil menambahkan admin!');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
             $user->update(['password' => Hash::make($request->password)]);
         }
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Berhasil memperbarui admin!');
     }
 
     /**
@@ -101,6 +101,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Berhasil menghapus admin!');
     }
 }

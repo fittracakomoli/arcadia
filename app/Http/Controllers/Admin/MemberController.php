@@ -44,7 +44,7 @@ class MemberController extends Controller
             'social_media' => $validated['social_media'],
         ]);
 
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.members.index')->with('success', 'Anggota berhasil ditambahkan.');
     }
 
     public function update(Request $request, Member $member)
@@ -75,7 +75,7 @@ class MemberController extends Controller
             'social_media' => $validated['social_media'],
         ]);
 
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.members.index')->with('success', 'Anggota berhasil diperbarui.');
     }
 
     public function destroy(Member $member)
@@ -84,6 +84,6 @@ class MemberController extends Controller
             Storage::disk('public')->delete($member->photo_path);
         }
         $member->delete();
-        return redirect()->route('admin.members.index');
+        return redirect()->route('admin.members.index')->with('success', 'Anggota berhasil dihapus.');
     }
 }

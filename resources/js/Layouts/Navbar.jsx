@@ -39,7 +39,7 @@ export default function Navbar() {
                 >
                     {settings.logo_horizontal_path ? (
                         <img
-                            src={`/storage/${settings.logo_horizontal_path}`}
+                            src={`/../public/storage/${settings.logo_horizontal_path}`}
                             className="h-12"
                             alt={`${
                                 settings.organization_name || "Arcadia"

@@ -381,7 +381,7 @@ export default function Home({
                     // Ganti URL ini dengan gambar Anda sendiri, misalnya '/assets/hero-image.jpg'
                     style={{
                         backgroundImage: settings.cover_photo_path
-                            ? `url(/public/storage/${settings.cover_photo_path})`
+                            ? `url(/storage/app/public/${settings.cover_photo_path})`
                             : "none",
                     }}
                 ></div>

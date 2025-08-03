@@ -195,69 +195,85 @@ const LogoutIcon = () => (
 
 export default function Sidebar({ isOpen, setIsOpen }) {
     const { url, props } = usePage(); // Dapatkan URL dan props
-    const { settings } = props; // <-- 1. Ambil settings dari props
+    const { settings, auth } = props; // <-- 1. Ambil settings dari props
     const navLinks = [
         {
             href: route("admin.dashboard"),
             routeName: "admin.dashboard",
             label: "Dashboard",
             icon: <HomeIcon />,
+            roles: ["admin", "moderator"], // <-- role yang boleh akses
         },
         {
             href: route("admin.users.index"),
             routeName: "admin.users.*",
             label: "Manajemen Admin",
             icon: <AdminIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.organization.index"),
             routeName: "admin.organization.*",
             label: "Manajemen Organisasi",
             icon: <OrganizationIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.underbow.index"),
             routeName: "admin.underbow.*",
             label: "Manajemen Underbow",
             icon: <OrganizationIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.news.index"),
             routeName: "admin.news.*",
             label: "Manajemen Berita",
             icon: <NewspaperIcon />,
+            roles: ["admin", "moderator"],
         },
         {
             href: route("admin.members.index"),
             routeName: "admin.members.*",
             label: "Manajemen Anggota",
             icon: <MembersIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.activities.index"),
             routeName: "admin.activities.*",
             label: "Manajemen Kegiatan",
             icon: <CalendarIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.agendas.index"),
             routeName: "admin.agendas.*",
             label: "Manajemen Agenda",
             icon: <CalendarIcon />,
+            roles: ["admin"], // hanya admin
         },
         {
             href: route("admin.gallery.index"),
             routeName: "admin.gallery.*",
             label: "Manajemen Galeri",
             icon: <ImageIcon />,
+            roles: ["admin", "moderator"],
         },
         {
             href: route("admin.messages.index"),
             routeName: "admin.messages.*",
             label: "Manajemen Pesan",
             icon: <MessageIcon />,
+            roles: ["admin", "moderator"],
         },
     ];
+
+    // Filter menu sesuai role user
+    const userRole = auth?.user?.role || "guest";
+    const filteredLinks = navLinks.filter((link) =>
+        link.roles.includes(userRole)
+    );
 
     return (
         <>
@@ -290,22 +306,25 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                         )}
                     </Link>
                 </div>
-                <nav className="flex-grow mt-4 space-y-1">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors ${
-                                route().current(link.routeName)
-                                    ? "bg-secondary font-semibold"
-                                    : "hover:bg-secondary"
-                            }`}
-                        >
-                            {link.icon}
-                            <span>{link.label}</span>
-                        </Link>
-                    ))}
-                    <div className="mt-2 border-t border-white pt-2">
+                <nav className="flex-grow mt-4">
+                    <div className=" space-y-1">
+                        {filteredLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors ${
+                                    route().current(link.routeName)
+                                        ? "bg-secondary font-semibold"
+                                        : "hover:bg-secondary"
+                                }`}
+                            >
+                                {link.icon}
+                                <span>{link.label}</span>
+                            </Link>
+                        ))}
+                    </div>
+
+                    <div className="mt-2 border-t border-white pt-2 space-y-1">
                         <Link
                             key={route("profile.edit")}
                             href={route("profile.edit")}

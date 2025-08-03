@@ -85,21 +85,9 @@ export default function Structure({
         <MainLayout>
             <Head title="Struktur Organisasi" />
 
-            {/* Header Section */}
-            <section className="pt-44 pb-16 bg-primary text-white text-center">
-                <div className="max-w-screen-xl mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold">
-                        Struktur Organisasi
-                    </h1>
-                    <p className="text-lg md:text-xl mt-4">
-                        Susunan Pengurus dan Garis Koordinasi
-                    </p>
-                </div>
-            </section>
-
             {/* Pengurus Harian Section (Gabungan) */}
             {dailyBoardGroups.length > 0 && (
-                <section className="py-16 bg-white">
+                <section className="pb-16 pt-36 bg-white">
                     <div className="max-w-screen-xl mx-auto px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold text-primary">

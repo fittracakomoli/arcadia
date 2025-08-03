@@ -2,7 +2,7 @@ import { Head, useForm } from "@inertiajs/react"; // <-- Ganti import
 import MainLayout from "@/Layouts/MainLayout";
 import InputError from "@/Components/InputError"; // <-- Tambahkan ini jika belum ada
 
-export default function Contact({ settings }) {
+export default function Contact({ settings, numphone }) {
     // Gunakan useForm untuk manajemen state, error, dan status pengiriman
     const { data, setData, post, processing, errors, wasSuccessful, reset } =
         useForm({
@@ -22,12 +22,12 @@ export default function Contact({ settings }) {
     return (
         <MainLayout>
             <Head title="Kontak" />
-            <section className="pt-36 pb-8 bg-primary text-white text-center">
-                <div className="max-w-screen-md mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold mb-2">
+            <section className="pt-40 pb-8 bg-gray-50 text-center">
+                <div className=" mb-8">
+                    <h1 className="text-3xl md:text-4xl font-bold text-primary">
                         Kontak Kami
                     </h1>
-                    <p className="text-lg md:text-xl mt-4">
+                    <p className="text-base md:text-lg font-light mt-2 text-gray-600">
                         Hubungi kami untuk pertanyaan, saran, atau kerjasama.
                     </p>
                 </div>
@@ -164,8 +164,15 @@ export default function Contact({ settings }) {
                                         Email:
                                     </span>
                                     <br />
-                                    {settings.email ||
-                                        "Email belum ditambahkan."}
+                                    {(
+                                        <a
+                                            target="_blank"
+                                            className="hover:underline"
+                                            href={`mailto:${settings.email}`}
+                                        >
+                                            {settings.email}
+                                        </a>
+                                    ) || "Email belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Alamat */}
@@ -233,8 +240,16 @@ export default function Contact({ settings }) {
                                         Telepon:
                                     </span>
                                     <br />
-                                    {settings.phone ||
-                                        "Telepon belum ditambahkan."}
+
+                                    {(
+                                        <a
+                                            target="_blank"
+                                            className="hover:underline"
+                                            href={`https://wa.me/62${settings.phone}`}
+                                        >
+                                            {`0${settings.phone}`}
+                                        </a>
+                                    ) || "Telepon belum ditambahkan."}
                                 </div>
                             </div>
                             {/* Kontak Ketua Himpunan */}
@@ -268,8 +283,15 @@ export default function Contact({ settings }) {
                                             {contact.name ||
                                                 "Nama belum diatur"}
                                             <br />
-                                            {contact.phone_number ||
-                                                "Nomor belum diatur"}
+                                            {(
+                                                <a
+                                                    target="_blank"
+                                                    className="hover:underline"
+                                                    href={`https://wa.me/62${contact.phone_number}`}
+                                                >
+                                                    {`0${contact.phone_number}`}
+                                                </a>
+                                            ) || "Telepon belum ditambahkan."}
                                         </div>
                                     </div>
                                 ))}
@@ -278,10 +300,10 @@ export default function Contact({ settings }) {
                 </div>
             </section>
             {/* Google Maps Section */}
-            <section className="py-0 bg-gray-50">
+            <section className="py-16 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4 pb-16">
-                    <h2 className="text-2xl font-bold text-primary mb-6 text-center">
-                        Lokasi Kami
+                    <h2 className="text-2xl font-bold text-primary mb-10 text-center">
+                        Sekretariat {settings.organization_name || "Organisasi"}
                     </h2>
                     {settings.google_maps_link ? (
                         <div className="rounded-lg overflow-hidden shadow-md">

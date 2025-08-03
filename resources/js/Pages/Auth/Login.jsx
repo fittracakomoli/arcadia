@@ -38,9 +38,12 @@ export default function Login({ status, canResetPassword, settings }) {
                         />
                     </Link>
                 </div>
-                <h2 className="text-center text-2xl font-bold text-primary mb-6">
-                    Selamat Datang Kembali
+                <h2 className="text-center text-2xl font-bold text-primary">
+                    Dashboard Admin
                 </h2>
+                <p className="mb-6 text-center font-light text-sm text-primary">
+                    Silakan masuk untuk melanjutkan
+                </p>
 
                 {status && (
                     <div className="mb-4 font-medium text-sm text-green-600">

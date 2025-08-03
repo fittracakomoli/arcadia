@@ -114,8 +114,8 @@ export default function Footer() {
                     <div className="text-center">
                         <p className="text-sm text-gray-300">
                             &copy; {settings.period || new Date().getFullYear()}{" "}
-                            Divisi Komunikasi dan Informasi. All rights
-                            reserved.
+                            Divisi Komunikasi dan Informasi HIMA ILKOM. All
+                            rights reserved.
                         </p>
                     </div>
                 </div>

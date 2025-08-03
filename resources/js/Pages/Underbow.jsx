@@ -11,20 +11,17 @@ export default function Underbow({ settings, underbows }) {
     return (
         <MainLayout>
             <Head title={`Kenali Underbow - ${settings.organization_name}`} />
-            <section className="pt-36 pb-12 bg-primary text-white text-center">
-                <div className="max-w-screen-md mx-auto px-4">
-                    <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
-                        Kenali Underbow {settings.organization_name}
-                    </h1>
-                    <p className="text-lg md:text-xl">
-                        Underbow adalah unit atau komunitas di bawah naungan{" "}
-                        {settings.organization_name} yang mewadahi minat, bakat,
-                        dan pengembangan diri mahasiswa.
-                    </p>
-                </div>
-            </section>
-            <section className="py-16 bg-white">
-                <div className="max-w-screen-xl mx-auto px-4">
+            <section className="pb-16 pt-40 bg-white">
+                <div className="max-w-screen-xl mx-auto px-4 text-center">
+                    <div className=" mb-16">
+                        <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                            Kenali Underbow
+                        </h1>
+                        <p className="text-base md:text-lg font-light mt-2 text-gray-600">
+                            Lembaga kemahasiswaan di bawah naungan{" "}
+                            {settings.organization_name}
+                        </p>
+                    </div>
                     <div className="flex flex-wrap justify-center gap-10">
                         {underbows.map((underbow) => (
                             <div

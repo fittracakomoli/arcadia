@@ -23,6 +23,8 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
+        "framer-motion": "^12.23.12",
+        "gsap": "^3.13.0",
         "use-debounce": "^10.0.5"
     }
 }

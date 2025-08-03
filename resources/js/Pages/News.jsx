@@ -27,11 +27,13 @@ const NewsCard = ({
 
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2">
-            <img
-                src={imageUrl}
-                alt={`Gambar untuk ${title}`}
-                className="w-full h-48 object-cover"
-            />
+            <Link href={route("news.show", slug)}>
+                <img
+                    src={imageUrl}
+                    alt={`Gambar untuk ${title}`}
+                    className="w-full h-48 object-cover"
+                />
+            </Link>
             <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-center text-sm text-gray-500 mb-2">
                     <span className="text-white bg-secondary px-4 text-xs py-1 rounded-full">
@@ -39,9 +41,11 @@ const NewsCard = ({
                     </span>
                     <span>{formatDate(published_at)}</span>
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-2 flex-grow line-clamp-2 h-14">
-                    {title}
-                </h3>
+                <Link href={route("news.show", slug)}>
+                    <h3 className="text-xl font-bold text-primary hover:text-secondary mb-2 flex-grow line-clamp-2 h-14">
+                        {title}
+                    </h3>
+                </Link>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                     {excerpt}
                 </p>
@@ -88,21 +92,17 @@ export default function News({ newsData, filters, settings }) {
         <MainLayout>
             <Head title="Berita" />
 
-            {/* Header Section */}
-            <section className="pt-36 pb-16 bg-primary text-white text-center">
-                <div className="max-w-screen-xl mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold">
-                        Berita & Informasi
-                    </h1>
-                    <p className="text-lg md:text-xl mt-4">
-                        Kumpulan Informasi dan Kabar Terbaru dari Kami
-                    </p>
-                </div>
-            </section>
-
             {/* Search Section */}
-            <section className="py-12 bg-gray-50">
-                <div className="max-w-2xl mx-auto px-4">
+            <section className="pb-12 pt-40 bg-gray-50">
+                <div className="max-w-2xl mx-auto px-4 text-center">
+                    <div className=" mb-8">
+                        <h1 className="text-3xl md:text-4xl font-bold text-primary">
+                            Berita & Informasi
+                        </h1>
+                        <p className="text-base md:text-lg font-light mt-2 text-gray-600">
+                            Kumpulan Informasi dan Kabar Terbaru dari Kami
+                        </p>
+                    </div>
                     <div className="flex flex-col md:flex-row md:items-center md:gap-4 gap-4">
                         <div className="relative flex-1">
                             <input

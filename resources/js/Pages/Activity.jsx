@@ -26,13 +26,13 @@ export default function Activity({
             <Head title="Aktivitas - HIMA ILKOM Arcadia 2025" />
 
             {featuredActivity && (
-                <section className="pt-36 pb-16 bg-white">
+                <section className="pt-40 pb-16 bg-white">
                     <div className="max-w-screen-xl mx-auto px-4">
                         <div className="text-center mb-8">
-                            <h2 className="text-3xl font-bold text-primary">
+                            <h2 className="text-3xl md:text-4xl font-bold text-primary">
                                 Program Kerja Terdekat
                             </h2>
-                            <p className="text-gray-600 mt-2">
+                            <p className="text-base md:text-lg font-light mt-2 text-gray-600">
                                 Jangan lewatkan acara unggulan kami berikutnya!
                             </p>
                         </div>

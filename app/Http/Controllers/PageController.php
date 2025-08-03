@@ -160,7 +160,7 @@ class PageController extends Controller
         $settings = OrganizationSetting::firstOrCreate([]);
 
         return Inertia::render('Contact', [
-            'settings' => $settings->only('logo_horizontal_path', 'address', 'email', 'phone', 'contacts', 'google_maps_link'),
+            'settings' => $settings->only('organization_name', 'logo_horizontal_path', 'address', 'email', 'phone', 'contacts', 'google_maps_link'),
         ]);
     }
 

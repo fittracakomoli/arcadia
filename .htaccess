@@ -20,8 +20,8 @@
 
     # BARU: Arahkan ke aset di folder public jika ada
     # Jika file yang diminta ADA di dalam folder /public, layani file itu secara langsung.
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
-    RewriteRule ^(.*)$ public/$1 [L]
+    RewriteCond %{DOCUMENT_ROOT}/881d6159bd8d5f13b3c97f8cc87ddc92f2c3636a3edafde01b2402652c6dceea/public%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ 881d6159bd8d5f13b3c97f8cc87ddc92f2c3636a3edafde01b2402652c6dceea/public/$1 [L]
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

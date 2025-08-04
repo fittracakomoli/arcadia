@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    Options -MultiViews -Indexes
+    RewriteEngine On
+
+    # 1. Jika file yang diminta ADA di dalam folder /public, layani file itu.
+    # Ini untuk CSS, JS, dan gambar.
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # 2. Untuk SEMUA permintaan lainnya, kirim ke front controller Laravel.
+    # Ini akan menangani rute aplikasi Anda DAN memblokir akses ke file di root.
+    RewriteRule ^(.*)$ public/index.php?/$1 [L]
+</IfModule>

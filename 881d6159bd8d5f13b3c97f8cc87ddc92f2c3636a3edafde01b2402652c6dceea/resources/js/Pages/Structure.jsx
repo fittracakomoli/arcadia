@@ -70,7 +70,7 @@ export default function Structure({
     // Fungsi untuk memberikan nama judul yang lebih deskriptif
     const getTitle = (key) => {
         const titles = {
-            BPH: "Pimpinan",
+            BPH: "Ketua Umum",
             PSDO: "Biro Pengembangan Sumber Daya Organisasi",
             "Ekonomi Kreatif": "Divisi Ekonomi Kreatif",
             Internal: "Divisi Internal",

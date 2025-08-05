@@ -240,7 +240,7 @@ export default function Message({ messages }) {
             />
 
             <div className="lg:ml-72">
-                <header className="bg-white shadow-sm p-4 flex items-center justify-between sticky top-0 z-20">
+                <header className="bg-white shadow-sm px-4 py-6 flex items-center justify-between sticky top-0 z-20">
                     <button
                         onClick={() => setSidebarOpen(true)}
                         className="lg:hidden text-gray-600"

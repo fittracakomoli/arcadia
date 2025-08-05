@@ -423,11 +423,17 @@ export default function Home({
 
             <section className="py-16 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center text-primary mb-12">
-                        <BlurText text="Kolaborasi Aktif Underbow" />
+                    <h2 className="text-3xl font-bold text-primary">
+                        <BlurText text="Kolabrorasi Aktif" />
                     </h2>
+                    <p className="text-gray-600 mt-2">
+                        <AnimatedContent delay={0}>
+                            Bersama dengan lembaga kemahasiswaan di bawah
+                            naungan {settings.organization_name}.
+                        </AnimatedContent>
+                    </p>
                     {/* 2. Ganti bagian statis dengan loop dinamis */}
-                    <AnimatedContent delay={0}>
+                    <AnimatedContent delay={0.1}>
                         <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 md:gap-x-16">
                             {underbows.length > 0 ? (
                                 underbows.map((underbow) => (

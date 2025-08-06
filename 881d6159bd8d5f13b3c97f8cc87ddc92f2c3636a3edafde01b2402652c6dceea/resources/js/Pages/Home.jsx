@@ -723,7 +723,7 @@ export default function Home({
                     {/* Grid Galeri menjadi dinamis */}
                     <AnimatedContent delay={0.2}>
                         {galleries.length > 0 ? (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
                                 {filteredImages.map((image) => (
                                     <div
                                         key={image.id}

@@ -392,7 +392,7 @@ export default function Home({
 
                 {/* Konten Teks */}
                 <div className="relative z-10 p-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                         <BlurText text={settings.headline || "Hima Ilkom"} />
                     </h1>
                     <p className="text-lg md:text-xl mb-8 max-w-screen-lg mx-auto">
@@ -421,7 +421,105 @@ export default function Home({
                 </div>
             </section>
 
-            <section className="py-16 bg-gray-50">
+            <section className="py-10">
+                <div className="max-w-screen-xl mx-auto px-4">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-primary">
+                            <BlurText text="Layanan Kami" />
+                        </h2>
+                        <p className="text-gray-600 mt-2">
+                            <AnimatedContent delay={0}>
+                                Layanan penunjang bagi pihak internal maupun
+                                eksternal.
+                            </AnimatedContent>
+                        </p>
+                    </div>
+
+                    {/* Grid Galeri menjadi dinamis */}
+                    <AnimatedContent delay={0.1}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                                <h2 className="text-xl font-semibold text-primary">
+                                    PENDATAAN MAHASISWA BARU 2025
+                                </h2>
+                                <p className="text-gray-600 my-4 text-sm">
+                                    Bagi mahasiswa baru program studi Teknik
+                                    Informatika dan Sistem Informasi Tahun 2025
+                                    semua jalur, silakan mengisi formulir
+                                    pendataan.
+                                </p>
+                                <div className="border-t border-gray-200 pt-4">
+                                    <Link
+                                        href=""
+                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                    >
+                                        Isi pendataan &rarr;
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                                <h2 className="text-xl font-semibold text-primary">
+                                    PENDATAAN PRESTASI MAHASISWA
+                                </h2>
+                                <p className="text-gray-600 my-4 text-sm">
+                                    Bagi mahasiswa Program Studi Teknik
+                                    Informatika dan Sistem Informasi yang
+                                    memiliki prestasi dalam ajang lomba apapun
+                                    dapat diisikan melalui pendataan ini.
+                                </p>
+                                <div className="border-t border-gray-200 pt-4">
+                                    <Link
+                                        href=""
+                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                    >
+                                        Isi pendataan &rarr;
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                                <h2 className="text-xl font-semibold text-primary">
+                                    MEDIA PARTNER & KERJA SAMA
+                                </h2>
+                                <p className="text-gray-600 my-4 text-sm">
+                                    Publikasi kegiatanmu melalui layanan media
+                                    partner dan kerja sama HIMA ILKOM. Akses
+                                    Standar Operasional Prosedur melalui link di
+                                    bawah ini.
+                                </p>
+                                <div className="border-t border-gray-200 pt-4">
+                                    <Link
+                                        href=""
+                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                    >
+                                        Akses SOP &rarr;
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                                <h2 className="text-xl font-semibold text-primary">
+                                    SOP PEMINJAMAN ALAT INVENTARIS
+                                </h2>
+                                <p className="text-gray-600 my-4 text-sm">
+                                    Perlu alat untuk menunjang kegiatanmu? Akses
+                                    Standar Operasional Prosedur peminjaman alat
+                                    inventaris HIMA ILKOM melalui link di bawah
+                                    ini.
+                                </p>
+                                <div className="border-t border-gray-200 pt-4">
+                                    <Link
+                                        href=""
+                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                    >
+                                        Akses SOP &rarr;
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </AnimatedContent>
+                </div>
+            </section>
+
+            <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-primary">
@@ -459,7 +557,7 @@ export default function Home({
                 </div>
             </section>
 
-            <section className="py-16">
+            <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-primary">
@@ -533,7 +631,7 @@ export default function Home({
                     </AnimatedContent>
                 </div>
             </section>
-            <section className="py-16 bg-gray-50">
+            <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                     {/* Kolom Kiri: Teks Penjelasan */}
                     <div className="text-left">
@@ -585,7 +683,7 @@ export default function Home({
                     </div>
                 </div>
             </section>
-            <section className="py-16">
+            <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-primary">
@@ -655,7 +753,7 @@ export default function Home({
                     </AnimatedContent>
                 </div>
             </section>
-            <section className="py-16 bg-gray-50">
+            <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-primary">

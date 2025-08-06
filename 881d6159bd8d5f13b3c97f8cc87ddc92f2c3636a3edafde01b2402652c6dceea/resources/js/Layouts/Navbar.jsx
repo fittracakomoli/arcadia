@@ -40,13 +40,13 @@ export default function Navbar() {
                     {settings.logo_horizontal_path ? (
                         <img
                             src={`/storage/${settings.logo_horizontal_path}`}
-                            className="h-12"
+                            className="h-10"
                             alt={`${
                                 settings.organization_name || "Arcadia"
                             } Logo`}
                         />
                     ) : (
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">
+                        <span className="self-center text-xl font-semibold whitespace-nowrap text-primary">
                             {settings.organization_name || "Nama Organisasi"}
                         </span>
                     )}
@@ -146,7 +146,7 @@ export default function Navbar() {
                                                         : link.label
                                                 )
                                             }
-                                            className={`flex py-2 px-3 md:h-12 md:mt-8 md:px-3 rounded md:p-0 transition-colors duration-200 ${
+                                            className={`flex py-2 px-3 md:h-12 md:mt-6 md:px-3 rounded md:p-0 transition-colors duration-200 ${
                                                 isActive
                                                     ? "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-100"
                                                     : "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
@@ -201,7 +201,7 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className={`block py-2 px-3 md:h-12 md:mt-8 md:px-3 rounded md:p-0 transition-colors duration-200 ${
+                                        className={`block py-2 px-3 md:h-12 md:mt-6 md:px-3 rounded md:p-0 transition-colors duration-200 ${
                                             isActive
                                                 ? "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-100"
                                                 : "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"

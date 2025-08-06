@@ -425,7 +425,7 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                            <BlurText text="Layanan" />
+                            <BlurText text="Layanan Dari Kami" />
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>

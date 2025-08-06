@@ -374,7 +374,7 @@ export default function Home({
             />
 
             {/* Hero Section Start */}
-            <section className="relative pt-36 pb-24 md:pt-72 md:pb-48 flex items-center justify-center text-center text-white">
+            <section className="relative pt-36 pb-24 md:pt-66 md:pb-44 flex items-center justify-center text-center text-white">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-gray-100"

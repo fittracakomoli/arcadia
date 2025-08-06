@@ -1,0 +1,1 @@
+import{r,j as n}from"./app-DU8LJ6-g.js";const d=r.forwardRef(function({className:e="",...o},s){const t=r.useRef(null),a=s||t;return n.jsx("textarea",{...o,className:"border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "+e,ref:a})});export{d as T};

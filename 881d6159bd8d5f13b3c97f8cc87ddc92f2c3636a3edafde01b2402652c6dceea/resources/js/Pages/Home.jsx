@@ -449,12 +449,13 @@ export default function Home({
                                     pendataan.
                                 </p>
                                 <div className="border-t border-gray-200 pt-4 items-center">
-                                    <Link
+                                    <a
+                                        target="_blank"
                                         href="https://himailkomunnes.com/pendataanmahasiswabaru"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Isi pendataan &rarr;
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
@@ -468,12 +469,13 @@ export default function Home({
                                     akademik dapat diisikan.
                                 </p>
                                 <div className="border-t border-gray-200 pt-4 items-center">
-                                    <Link
+                                    <a
+                                        target="_blank"
                                         href="https://himailkomunnes.com/pendataanprestasi"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Isi pendataan &rarr;
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
@@ -487,18 +489,20 @@ export default function Home({
                                     ini.
                                 </p>
                                 <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
-                                    <Link
+                                    <a
+                                        target="_blank"
                                         href="https://himailkomunnes.com/paketmediapartner"
                                         className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
                                     >
                                         Akses Paket
-                                    </Link>
-                                    <Link
+                                    </a>
+                                    <a
+                                        target="_blank"
                                         href="https://wa.me/6287777526460"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Kontak &rarr;
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
@@ -512,18 +516,20 @@ export default function Home({
                                     ini.
                                 </p>
                                 <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
-                                    <Link
+                                    <a
+                                        target="_blank"
                                         href="https://himailkomunnes.com/soppeminjamanalat"
                                         className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
                                     >
                                         Akses SOP
-                                    </Link>
-                                    <Link
+                                    </a>
+                                    <a
+                                        target="_blank"
                                         href="https://himailkomunnes.com/formulirpeminjamanalat"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Formulir &rarr;
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>

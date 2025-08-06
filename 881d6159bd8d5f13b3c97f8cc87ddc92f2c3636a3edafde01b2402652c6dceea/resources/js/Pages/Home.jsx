@@ -424,10 +424,10 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                        <h2 className="text-3xl font-bold text-primary">
                             <BlurText text="Layanan Kami" />
                         </h2>
-                        <p className="text-gray-600 text-sm md:text-base mt-2">
+                        <p className="text-gray-600 mt-2">
                             <AnimatedContent delay={0}>
                                 Layanan penunjang bagi pihak internal maupun
                                 eksternal.
@@ -448,9 +448,9 @@ export default function Home({
                                     semua jalur, silakan mengisi formulir
                                     pendataan.
                                 </p>
-                                <div className="border-t border-gray-200 pt-4">
+                                <div className="border-t border-gray-200 pt-4 items-center">
                                     <Link
-                                        href=""
+                                        href="https://himailkomunnes.com/pendataanmahasiswabaru"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Isi pendataan &rarr;
@@ -462,14 +462,14 @@ export default function Home({
                                     PENDATAAN PRESTASI MAHASISWA
                                 </h2>
                                 <p className="text-gray-600 my-4 text-sm">
-                                    Bagi mahasiswa Program Studi Teknik
+                                    Bagi mahasiswa aktif Program Studi Teknik
                                     Informatika dan Sistem Informasi yang
-                                    memiliki prestasi dalam ajang lomba apapun
-                                    dapat diisikan melalui pendataan ini.
+                                    memiliki prestasi bidang akademik maupun non
+                                    akademik dapat diisikan.
                                 </p>
-                                <div className="border-t border-gray-200 pt-4">
+                                <div className="border-t border-gray-200 pt-4 items-center">
                                     <Link
-                                        href=""
+                                        href="https://himailkomunnes.com/pendataanprestasi"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
                                         Isi pendataan &rarr;
@@ -483,34 +483,46 @@ export default function Home({
                                 <p className="text-gray-600 my-4 text-sm">
                                     Publikasi kegiatanmu melalui layanan media
                                     partner dan kerja sama HIMA ILKOM. Akses
-                                    Standar Operasional Prosedur melalui link di
-                                    bawah ini.
+                                    paket media partner melalui link di bawah
+                                    ini.
                                 </p>
-                                <div className="border-t border-gray-200 pt-4">
+                                <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
                                     <Link
-                                        href=""
+                                        href="https://himailkomunnes.com/paketmediapartner"
+                                        className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
+                                    >
+                                        Akses Paket
+                                    </Link>
+                                    <Link
+                                        href="https://wa.me/6287777526460"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
-                                        Akses SOP &rarr;
+                                        Kontak &rarr;
                                     </Link>
                                 </div>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
                                 <h2 className="text-xl font-semibold text-primary">
-                                    SOP PEMINJAMAN ALAT INVENTARIS
+                                    PEMINJAMAN ALAT INVENTARIS
                                 </h2>
                                 <p className="text-gray-600 my-4 text-sm">
-                                    Perlu alat untuk menunjang kegiatanmu? Akses
-                                    Standar Operasional Prosedur peminjaman alat
+                                    Perlu alat untuk menunjang keberlangsungan
+                                    kegiatanmu? Akses formulir peminjaman alat
                                     inventaris HIMA ILKOM melalui link di bawah
                                     ini.
                                 </p>
-                                <div className="border-t border-gray-200 pt-4">
+                                <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
                                     <Link
-                                        href=""
+                                        href="https://himailkomunnes.com/soppeminjamanalat"
+                                        className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
+                                    >
+                                        Akses SOP
+                                    </Link>
+                                    <Link
+                                        href="https://himailkomunnes.com/formulirpeminjamanalat"
                                         className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
                                     >
-                                        Akses SOP &rarr;
+                                        Formulir &rarr;
                                     </Link>
                                 </div>
                             </div>

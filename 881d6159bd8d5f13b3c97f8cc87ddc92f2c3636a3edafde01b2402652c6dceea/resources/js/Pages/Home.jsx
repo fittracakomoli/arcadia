@@ -424,10 +424,10 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-primary">
+                        <h2 className="text-xl md:text-3xl font-bold text-primary">
                             <BlurText text="Layanan Kami" />
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>
                                 Layanan penunjang bagi pihak internal maupun
                                 eksternal.

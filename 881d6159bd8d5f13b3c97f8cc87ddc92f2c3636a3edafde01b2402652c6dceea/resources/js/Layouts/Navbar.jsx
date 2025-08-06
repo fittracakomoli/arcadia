@@ -146,7 +146,7 @@ export default function Navbar() {
                                                         : link.label
                                                 )
                                             }
-                                            className={`flex py-2 px-3 md:h-16 md:mt-10 md:px-3 rounded md:p-0 transition-colors duration-200 ${
+                                            className={`flex py-2 px-3 md:h-12 md:mt-8 md:px-3 rounded md:p-0 transition-colors duration-200 ${
                                                 isActive
                                                     ? "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-100"
                                                     : "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
@@ -201,7 +201,7 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className={`block py-2 px-3 md:h-16 md:mt-10 md:px-3 rounded md:p-0 transition-colors duration-200 ${
+                                        className={`block py-2 px-3 md:h-12 md:mt-8 md:px-3 rounded md:p-0 transition-colors duration-200 ${
                                             isActive
                                                 ? "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-100"
                                                 : "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"

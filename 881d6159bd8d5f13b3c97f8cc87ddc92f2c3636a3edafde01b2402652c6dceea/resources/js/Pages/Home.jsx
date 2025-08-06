@@ -424,7 +424,7 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
-                        <h2 className="text-xl md:text-3xl font-bold text-primary">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
                             <BlurText text="Layanan Kami" />
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base mt-2">
@@ -522,10 +522,10 @@ export default function Home({
             <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-primary">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
                             <BlurText text="Kolaborasi Aktif" />
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>
                                 Bersama dengan lembaga kemahasiswaan di bawah
                                 naungan {settings.organization_name}.
@@ -560,10 +560,10 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-primary">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
                             <BlurText text="Berita dan Informasi Terkini" />
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>
                                 Ikuti perkembangan terbaru dari kegiatan dan
                                 pencapaian kami.
@@ -635,7 +635,7 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                     {/* Kolom Kiri: Teks Penjelasan */}
                     <div className="text-left">
-                        <h2 className="text-3xl font-bold text-primary mb-4">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
                             <BlurText
                                 className="text-left"
                                 text={`Tentang ${
@@ -643,14 +643,14 @@ export default function Home({
                                 }`}
                             />
                         </h2>
-                        <p className="text-xl font-semibold text-gray-700 mb-4">
+                        <p className="text-lg md:text-xl font-semibold text-gray-700 mb-4">
                             <AnimatedContent delay={0}>
                                 Kabinet{" "}
                                 {settings.cabinet_name || "Nama Kabinet"}{" "}
                                 {settings.period || "Periode"}
                             </AnimatedContent>
                         </p>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
+                        <p className="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">
                             <AnimatedContent delay={0.1}>
                                 {settings.definition ||
                                     "Definisi organisasi belum diatur."}
@@ -659,7 +659,7 @@ export default function Home({
                         <AnimatedContent delay={0.2}>
                             <Link
                                 href="/about"
-                                className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105"
+                                className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-sm md:text-base transition duration-300 ease-in-out transform hover:scale-105"
                             >
                                 Baca Selengkapnya
                             </Link>
@@ -686,10 +686,10 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-primary">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
                             <BlurText text="Galeri Kegiatan" />
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>
                                 Momen-momen berharga dari berbagai acara yang
                                 telah kami selenggarakan.
@@ -756,12 +756,12 @@ export default function Home({
             <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-primary">
+                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
                             <BlurText
                                 text={`Video Profil Kabinet ${settings.cabinet_name}`}
                             />
                         </h2>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-gray-600 text-sm md:text-base mt-2">
                             <AnimatedContent delay={0}>
                                 Kenali kami lebih dekat melalui video profil
                                 singkat ini.

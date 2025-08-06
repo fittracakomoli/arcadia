@@ -1,0 +1,1 @@
+import{j as s}from"./app-CLFx_5l2.js";function o({value:t,className:e="",children:m,...r}){return s.jsx("label",{...r,className:"block mb-2 text-sm font-medium text-primary "+e,children:t||m})}export{o as I};

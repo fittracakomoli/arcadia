@@ -374,7 +374,7 @@ export default function Home({
             />
 
             {/* Hero Section Start */}
-            <section className="relative pt-32 pb-20 md:pt-64 md:pb-40 flex items-center justify-center text-center text-white">
+            <section className="relative pt-24 pb-16 md:pt-64 md:pb-40 flex items-center justify-center text-center text-white">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-gray-100"
@@ -392,10 +392,10 @@ export default function Home({
 
                 {/* Konten Teks */}
                 <div className="relative z-10 p-4">
-                    <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-2">
                         <BlurText text={settings.headline || "Hima Ilkom"} />
                     </h1>
-                    <p className="text-base md:text-xl mb-8 max-w-screen-lg mx-auto">
+                    <p className="text-base md:text-xl mb-4 max-w-screen-lg mx-auto">
                         <SplitText
                             text={settings.tagline || "Tagline Hima Ilkom"}
                         />

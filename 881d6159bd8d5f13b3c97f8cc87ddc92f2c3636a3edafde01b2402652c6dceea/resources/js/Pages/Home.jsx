@@ -562,7 +562,7 @@ export default function Home({
                                                 : "https://via.placeholder.com/150"
                                         }
                                         alt={`Logo ${underbow.name}`}
-                                        className="h-16 md:h-20 transition duration-300 filter grayscale hover:grayscale-0 opacity-60 hover:opacity-100"
+                                        className="h-16 md:h-20 transition duration-300"
                                     />
                                 ))
                             ) : (

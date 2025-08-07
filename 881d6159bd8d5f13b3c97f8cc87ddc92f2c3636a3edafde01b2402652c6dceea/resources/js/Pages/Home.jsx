@@ -425,115 +425,108 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-primary">
-                            <BlurText text="Layanan Kami" />
+                            Layanan Kami
                         </h2>
                         <p className="text-gray-600 mt-2">
-                            <AnimatedContent delay={0}>
-                                Layanan penunjang bagi pihak internal maupun
-                                eksternal.
-                            </AnimatedContent>
+                            Layanan penunjang bagi pihak internal maupun
+                            eksternal.
                         </p>
                     </div>
 
                     {/* Grid Galeri menjadi dinamis */}
-                    <AnimatedContent delay={0.1}>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                                <h2 className="text-xl font-semibold text-primary">
-                                    PENDATAAN MAHASISWA BARU 2025
-                                </h2>
-                                <p className="text-gray-600 my-4 text-sm">
-                                    Bagi mahasiswa baru program studi Teknik
-                                    Informatika dan Sistem Informasi Tahun 2025
-                                    semua jalur, silakan mengisi formulir
-                                    pendataan.
-                                </p>
-                                <div className="border-t border-gray-200 pt-4 items-center">
-                                    <a
-                                        target="_blank"
-                                        href="https://himailkomunnes.com/pendataanmahasiswabaru"
-                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
-                                    >
-                                        Isi pendataan &rarr;
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                                <h2 className="text-xl font-semibold text-primary">
-                                    PENDATAAN PRESTASI MAHASISWA
-                                </h2>
-                                <p className="text-gray-600 my-4 text-sm">
-                                    Bagi mahasiswa aktif Program Studi Teknik
-                                    Informatika dan Sistem Informasi yang
-                                    memiliki prestasi bidang akademik maupun non
-                                    akademik dapat diisikan.
-                                </p>
-                                <div className="border-t border-gray-200 pt-4 items-center">
-                                    <a
-                                        target="_blank"
-                                        href="https://himailkomunnes.com/pendataanprestasi"
-                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
-                                    >
-                                        Isi pendataan &rarr;
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                                <h2 className="text-xl font-semibold text-primary">
-                                    MEDIA PARTNER & KERJA SAMA
-                                </h2>
-                                <p className="text-gray-600 my-4 text-sm">
-                                    Publikasi kegiatanmu melalui layanan media
-                                    partner dan kerja sama HIMA ILKOM. Akses
-                                    paket media partner melalui link di bawah
-                                    ini.
-                                </p>
-                                <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
-                                    <a
-                                        target="_blank"
-                                        href="https://himailkomunnes.com/paketmediapartner"
-                                        className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
-                                    >
-                                        Akses Paket
-                                    </a>
-                                    <a
-                                        target="_blank"
-                                        href="https://wa.me/6287777526460"
-                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
-                                    >
-                                        Kontak &rarr;
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                                <h2 className="text-xl font-semibold text-primary">
-                                    PEMINJAMAN ALAT INVENTARIS
-                                </h2>
-                                <p className="text-gray-600 my-4 text-sm">
-                                    Perlu alat untuk menunjang keberlangsungan
-                                    kegiatanmu? Akses formulir peminjaman alat
-                                    inventaris HIMA ILKOM melalui link di bawah
-                                    ini.
-                                </p>
-                                <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
-                                    <a
-                                        target="_blank"
-                                        href="https://himailkomunnes.com/soppeminjamanalat"
-                                        className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
-                                    >
-                                        Akses SOP
-                                    </a>
-                                    <a
-                                        target="_blank"
-                                        href="https://himailkomunnes.com/formulirpeminjamanalat"
-                                        className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
-                                    >
-                                        Formulir &rarr;
-                                    </a>
-                                </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                            <h2 className="text-xl font-semibold text-primary">
+                                PENDATAAN MAHASISWA BARU 2025
+                            </h2>
+                            <p className="text-gray-600 my-4 text-sm">
+                                Bagi mahasiswa baru program studi Teknik
+                                Informatika dan Sistem Informasi Tahun 2025
+                                semua jalur, silakan mengisi formulir pendataan.
+                            </p>
+                            <div className="border-t border-gray-200 pt-4 items-center">
+                                <a
+                                    target="_blank"
+                                    href="https://himailkomunnes.com/pendataanmahasiswabaru"
+                                    className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                >
+                                    Isi pendataan &rarr;
+                                </a>
                             </div>
                         </div>
-                    </AnimatedContent>
+                        <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                            <h2 className="text-xl font-semibold text-primary">
+                                PENDATAAN PRESTASI MAHASISWA
+                            </h2>
+                            <p className="text-gray-600 my-4 text-sm">
+                                Bagi mahasiswa aktif Program Studi Teknik
+                                Informatika dan Sistem Informasi yang memiliki
+                                prestasi bidang akademik maupun non akademik
+                                dapat diisikan.
+                            </p>
+                            <div className="border-t border-gray-200 pt-4 items-center">
+                                <a
+                                    target="_blank"
+                                    href="https://himailkomunnes.com/pendataanprestasi"
+                                    className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                >
+                                    Isi pendataan &rarr;
+                                </a>
+                            </div>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                            <h2 className="text-xl font-semibold text-primary">
+                                MEDIA PARTNER & KERJA SAMA
+                            </h2>
+                            <p className="text-gray-600 my-4 text-sm">
+                                Publikasi kegiatanmu melalui layanan media
+                                partner dan kerja sama HIMA ILKOM. Akses paket
+                                media partner melalui link di bawah ini.
+                            </p>
+                            <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
+                                <a
+                                    target="_blank"
+                                    href="https://himailkomunnes.com/paketmediapartner"
+                                    className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
+                                >
+                                    Akses Paket
+                                </a>
+                                <a
+                                    target="_blank"
+                                    href="https://wa.me/6287777526460"
+                                    className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                >
+                                    Kontak &rarr;
+                                </a>
+                            </div>
+                        </div>
+                        <div className="bg-white p-6 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                            <h2 className="text-xl font-semibold text-primary">
+                                PEMINJAMAN ALAT INVENTARIS
+                            </h2>
+                            <p className="text-gray-600 my-4 text-sm">
+                                Perlu alat untuk menunjang keberlangsungan
+                                kegiatanmu? Akses formulir peminjaman alat
+                                inventaris HIMA ILKOM melalui link di bawah ini.
+                            </p>
+                            <div className="border-t border-gray-200 pt-4 flex items-center gap-4">
+                                <a
+                                    target="_blank"
+                                    href="https://himailkomunnes.com/soppeminjamanalat"
+                                    className="bg-primary rounded-full px-3 py-1 text-white text-sm font-semibold hover:bg-secondary transition-colors"
+                                >
+                                    Akses SOP
+                                </a>
+                                <a
+                                    target="_blank"
+                                    href="https://himailkomunnes.com/formulirpeminjamanalat"
+                                    className="text-primary text-sm font-semibold hover:text-secondary transition-colors"
+                                >
+                                    Formulir &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -541,37 +534,33 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                            <BlurText text="Kolaborasi Aktif" />
+                            Kolaborasi Aktif
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base mt-2">
-                            <AnimatedContent delay={0}>
-                                Bersama dengan lembaga kemahasiswaan di bawah
-                                naungan {settings.organization_name}.
-                            </AnimatedContent>
+                            Bersama dengan lembaga kemahasiswaan di bawah
+                            naungan {settings.organization_name}.
                         </p>
                     </div>
                     {/* 2. Ganti bagian statis dengan loop dinamis */}
-                    <AnimatedContent delay={0.1}>
-                        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 md:gap-x-16">
-                            {underbows.length > 0 ? (
-                                underbows.map((underbow) => (
-                                    <img
-                                        src={
-                                            underbow.logo_path
-                                                ? `/storage/${underbow.logo_path}`
-                                                : "https://via.placeholder.com/150"
-                                        }
-                                        alt={`Logo ${underbow.name}`}
-                                        className="h-16 md:h-20 transition duration-300"
-                                    />
-                                ))
-                            ) : (
-                                <p className="text-gray-500">
-                                    Underbow belum ditambahkan.
-                                </p>
-                            )}
-                        </div>
-                    </AnimatedContent>
+                    <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 md:gap-x-16">
+                        {underbows.length > 0 ? (
+                            underbows.map((underbow) => (
+                                <img
+                                    src={
+                                        underbow.logo_path
+                                            ? `/storage/${underbow.logo_path}`
+                                            : "https://via.placeholder.com/150"
+                                    }
+                                    alt={`Logo ${underbow.name}`}
+                                    className="h-16 md:h-20 transition duration-300"
+                                />
+                            ))
+                        ) : (
+                            <p className="text-gray-500">
+                                Underbow belum ditambahkan.
+                            </p>
+                        )}
+                    </div>
                 </div>
             </section>
 
@@ -579,90 +568,81 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-primary">
-                            <BlurText text="Berita dan Informasi Terkini" />
+                            Berita dan Informasi Terkini
                         </h2>
                         <p className="text-gray-600 mt-2">
-                            <AnimatedContent delay={0}>
-                                Ikuti perkembangan terbaru dari kegiatan dan
-                                pencapaian kami.
-                            </AnimatedContent>
+                            Ikuti perkembangan terbaru dari kegiatan dan
+                            pencapaian kami.
                         </p>
                     </div>
 
                     {/* Bagian Berita menjadi dinamis */}
-                    <AnimatedContent delay={0.1}>
-                        {latestNews.length > 0 ? (
-                            <div className="flex flex-wrap justify-center gap-8">
-                                {latestNews.map((news) => (
-                                    <div className="w-full md:w-1/2 lg:w-96">
-                                        <article
-                                            key={news.id}
-                                            className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2"
+                    {latestNews.length > 0 ? (
+                        <div className="flex flex-wrap justify-center gap-8">
+                            {latestNews.map((news) => (
+                                <div className="w-full md:w-1/2 lg:w-96">
+                                    <article
+                                        key={news.id}
+                                        className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2"
+                                    >
+                                        <Link
+                                            href={route("news.show", news.slug)}
                                         >
-                                            <Link
-                                                href={route(
-                                                    "news.show",
-                                                    news.slug
-                                                )}
-                                            >
-                                                <img
-                                                    src={`/storage/${news.image_path}`}
-                                                    alt={news.title}
-                                                    className="w-full h-48 object-cover"
-                                                />
-                                            </Link>
-                                            <div className="p-6">
-                                                <span className="text-sm font-semibold text-secondary">
-                                                    {news.category}
-                                                </span>
-                                                <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
-                                                    <Link
-                                                        href={route(
-                                                            "news.show",
-                                                            news.slug
-                                                        )}
-                                                    >
-                                                        {news.title}
-                                                    </Link>
-                                                </h3>
-                                                <p className="mt-2 text-gray-600 text-sm line-clamp-3">
-                                                    {news.excerpt}
-                                                </p>
-                                                <div className="mt-4">
-                                                    <Link
-                                                        href={route(
-                                                            "news.show",
-                                                            news.slug
-                                                        )}
-                                                        className="text-primary font-semibold hover:text-secondary transition-colors"
-                                                    >
-                                                        Baca Selengkapnya &rarr;
-                                                    </Link>
-                                                </div>
+                                            <img
+                                                src={`/storage/${news.image_path}`}
+                                                alt={news.title}
+                                                className="w-full h-48 object-cover"
+                                            />
+                                        </Link>
+                                        <div className="p-6">
+                                            <span className="text-sm font-semibold text-secondary">
+                                                {news.category}
+                                            </span>
+                                            <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
+                                                <Link
+                                                    href={route(
+                                                        "news.show",
+                                                        news.slug
+                                                    )}
+                                                >
+                                                    {news.title}
+                                                </Link>
+                                            </h3>
+                                            <p className="mt-2 text-gray-600 text-sm line-clamp-3">
+                                                {news.excerpt}
+                                            </p>
+                                            <div className="mt-4">
+                                                <Link
+                                                    href={route(
+                                                        "news.show",
+                                                        news.slug
+                                                    )}
+                                                    className="text-primary font-semibold hover:text-secondary transition-colors"
+                                                >
+                                                    Baca Selengkapnya &rarr;
+                                                </Link>
                                             </div>
-                                        </article>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="text-center py-10">
-                                <p className="text-gray-500">
-                                    Berita belum ditambahkan.
-                                </p>
-                            </div>
-                        )}
-                    </AnimatedContent>
-
-                    <AnimatedContent delay={0.2}>
-                        <div className="text-center mt-12">
-                            <Link
-                                className="text-primary text-sm border border-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors duration-300"
-                                href={route("news.index")}
-                            >
-                                Lihat Selengkapnya
-                            </Link>
+                                        </div>
+                                    </article>
+                                </div>
+                            ))}
                         </div>
-                    </AnimatedContent>
+                    ) : (
+                        <div className="text-center py-10">
+                            <p className="text-gray-500">
+                                Berita belum ditambahkan.
+                            </p>
+                        </div>
+                    )}
+
+                    <div className="text-center mt-12">
+                        <Link
+                            className="text-primary text-sm border border-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors duration-300"
+                            href={route("news.index")}
+                        >
+                            Lihat Selengkapnya
+                        </Link>
+                    </div>
                 </div>
             </section>
             <section className="py-10 bg-gray-50">
@@ -670,50 +650,36 @@ export default function Home({
                     {/* Kolom Kiri: Teks Penjelasan */}
                     <div className="text-left">
                         <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
-                            <BlurText
-                                className="text-left"
-                                text={`Tentang ${
-                                    settings.organization_name || "Organisasi"
-                                }`}
-                            />
+                            Tentang {settings.organization_name || "Organisasi"}
                         </h2>
                         <p className="text-lg md:text-xl font-semibold text-gray-700 mb-4">
-                            <AnimatedContent delay={0}>
-                                Kabinet{" "}
-                                {settings.cabinet_name || "Nama Kabinet"}{" "}
-                                {settings.period || "Periode"}
-                            </AnimatedContent>
+                            Kabinet {settings.cabinet_name || "Nama Kabinet"}{" "}
+                            {settings.period || "Periode"}
                         </p>
                         <p className="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">
-                            <AnimatedContent delay={0.1}>
-                                {settings.definition ||
-                                    "Definisi organisasi belum diatur."}
-                            </AnimatedContent>
+                            {settings.definition ||
+                                "Definisi organisasi belum diatur."}
                         </p>
-                        <AnimatedContent delay={0.2}>
-                            <Link
-                                href="/about"
-                                className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-sm md:text-base transition duration-300 ease-in-out transform hover:scale-105"
-                            >
-                                Baca Selengkapnya
-                            </Link>
-                        </AnimatedContent>
+                        <Link
+                            href="/about"
+                            className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-sm md:text-base transition duration-300 ease-in-out transform hover:scale-105"
+                        >
+                            Baca Selengkapnya
+                        </Link>
                     </div>
 
                     {/* Kolom Kanan: Gambar Logo */}
                     <div className="flex justify-center items-center order-first md:order-last">
                         {/* Ganti src dengan path logo HIMA ILKOM Anda */}
-                        <AnimatedContent delay={0.3}>
-                            <img
-                                src={
-                                    settings.logo_full_path
-                                        ? `/storage/${settings.logo_full_path}`
-                                        : "https://via.placeholder.com/256"
-                                }
-                                alt="Logo Organisasi"
-                                className="h-48 md:h-64 object-contain"
-                            />
-                        </AnimatedContent>
+                        <img
+                            src={
+                                settings.logo_full_path
+                                    ? `/storage/${settings.logo_full_path}`
+                                    : "https://via.placeholder.com/256"
+                            }
+                            alt="Logo Organisasi"
+                            className="h-48 md:h-64 object-contain"
+                        />
                     </div>
                 </div>
             </section>
@@ -721,103 +687,89 @@ export default function Home({
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                            <BlurText text="Galeri Kegiatan" />
+                            Galeri Kegiatan
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base mt-2">
-                            <AnimatedContent delay={0}>
-                                Momen-momen berharga dari berbagai acara yang
-                                telah kami selenggarakan.
-                            </AnimatedContent>
+                            Momen-momen berharga dari berbagai acara yang telah
+                            kami selenggarakan.
                         </p>
                     </div>
 
                     {/* Tombol Filter Kategori */}
-                    <AnimatedContent delay={0.1}>
-                        {galleries.length > 0 && (
-                            <div className="flex justify-center flex-wrap gap-2 mb-12">
-                                {categories.map((category) => (
-                                    <button
-                                        key={category}
-                                        onClick={() =>
-                                            setActiveCategory(category)
-                                        }
-                                        className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
-                                            activeCategory === category
-                                                ? "bg-primary text-white"
-                                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                                        }`}
-                                    >
-                                        {category}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </AnimatedContent>
+                    {galleries.length > 0 && (
+                        <div className="flex justify-center flex-wrap gap-2 mb-12">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+                                        activeCategory === category
+                                            ? "bg-primary text-white"
+                                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                    }`}
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Grid Galeri menjadi dinamis */}
-                    <AnimatedContent delay={0.2}>
-                        {galleries.length > 0 ? (
-                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
-                                {filteredImages.map((image) => (
-                                    <div
-                                        key={image.id}
-                                        className="relative aspect-square rounded-lg overflow-hidden group"
-                                    >
-                                        <img
-                                            src={`/storage/${image.image_path}`}
-                                            alt={
-                                                image.caption ||
-                                                `Galeri ${image.category}`
-                                            }
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-center text-gray-500">
-                                Galeri kegiatan belum ditambahkan.
-                            </p>
-                        )}
-                    </AnimatedContent>
+                    {galleries.length > 0 ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+                            {filteredImages.map((image) => (
+                                <div
+                                    key={image.id}
+                                    className="relative aspect-square rounded-lg overflow-hidden group"
+                                >
+                                    <img
+                                        src={`/storage/${image.image_path}`}
+                                        alt={
+                                            image.caption ||
+                                            `Galeri ${image.category}`
+                                        }
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500">
+                            Galeri kegiatan belum ditambahkan.
+                        </p>
+                    )}
                 </div>
             </section>
             <section className="py-10 bg-gray-50">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                            <BlurText
-                                text={`Video Profil Kabinet ${settings.cabinet_name}`}
-                            />
+                            Video Profil Kabinet {settings.cabinet_name}
                         </h2>
                         <p className="text-gray-600 text-sm md:text-base mt-2">
-                            <AnimatedContent delay={0}>
-                                Kenali kami lebih dekat melalui video profil
-                                singkat ini.
-                            </AnimatedContent>
+                            Kenali kami lebih dekat melalui video profil singkat
+                            ini.
                         </p>
                     </div>
 
                     {/* Container untuk membuat video responsif */}
-                    <AnimatedContent delay={0.1}>
-                        {settings.video_profile_link ? (
-                            <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
-                                <iframe
-                                    className="w-full h-full"
-                                    src={`https://www.youtube.com/embed/${settings.video_profile_link}`}
-                                    title="YouTube video player"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
-                        ) : (
-                            <div className="text-center py-10">
-                                <p className="text-gray-500">
-                                    Video profil belum ditambahkan.
-                                </p>
-                            </div>
-                        )}
-                    </AnimatedContent>
+                    {settings.video_profile_link ? (
+                        <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
+                            <iframe
+                                className="w-full h-full"
+                                src={`https://www.youtube.com/embed/${settings.video_profile_link}`}
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    ) : (
+                        <div className="text-center py-10">
+                            <p className="text-gray-500">
+                                Video profil belum ditambahkan.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </section>
         </MainLayout>

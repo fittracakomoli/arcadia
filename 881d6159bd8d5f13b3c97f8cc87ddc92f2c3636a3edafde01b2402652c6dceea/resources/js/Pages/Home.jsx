@@ -578,10 +578,10 @@ export default function Home({
             <section className="py-10">
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                        <h2 className="text-3xl font-bold text-primary">
                             <BlurText text="Berita dan Informasi Terkini" />
                         </h2>
-                        <p className="text-gray-600 text-sm md:text-base mt-2">
+                        <p className="text-gray-600 mt-2">
                             <AnimatedContent delay={0}>
                                 Ikuti perkembangan terbaru dari kegiatan dan
                                 pencapaian kami.
@@ -592,51 +592,56 @@ export default function Home({
                     {/* Bagian Berita menjadi dinamis */}
                     <AnimatedContent delay={0.1}>
                         {latestNews.length > 0 ? (
-                            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            <div className="flex flex-wrap justify-center gap-8">
                                 {latestNews.map((news) => (
-                                    <article
-                                        key={news.id}
-                                        className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2"
-                                    >
-                                        <Link
-                                            href={route("news.show", news.slug)}
+                                    <div className="w-full md:w-1/2 lg:w-96">
+                                        <article
+                                            key={news.id}
+                                            className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2"
                                         >
-                                            <img
-                                                src={`/storage/${news.image_path}`}
-                                                alt={news.title}
-                                                className="w-full h-48 object-cover"
-                                            />
-                                        </Link>
-                                        <div className="p-6">
-                                            <span className="text-sm font-semibold text-secondary">
-                                                {news.category}
-                                            </span>
-                                            <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
-                                                <Link
-                                                    href={route(
-                                                        "news.show",
-                                                        news.slug
-                                                    )}
-                                                >
-                                                    {news.title}
-                                                </Link>
-                                            </h3>
-                                            <p className="mt-2 text-gray-600 text-sm line-clamp-3">
-                                                {news.excerpt}
-                                            </p>
-                                            <div className="mt-4">
-                                                <Link
-                                                    href={route(
-                                                        "news.show",
-                                                        news.slug
-                                                    )}
-                                                    className="text-primary font-semibold hover:text-secondary transition-colors"
-                                                >
-                                                    Baca Selengkapnya &rarr;
-                                                </Link>
+                                            <Link
+                                                href={route(
+                                                    "news.show",
+                                                    news.slug
+                                                )}
+                                            >
+                                                <img
+                                                    src={`/storage/${news.image_path}`}
+                                                    alt={news.title}
+                                                    className="w-full h-48 object-cover"
+                                                />
+                                            </Link>
+                                            <div className="p-6">
+                                                <span className="text-sm font-semibold text-secondary">
+                                                    {news.category}
+                                                </span>
+                                                <h3 className="mt-2 text-xl font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
+                                                    <Link
+                                                        href={route(
+                                                            "news.show",
+                                                            news.slug
+                                                        )}
+                                                    >
+                                                        {news.title}
+                                                    </Link>
+                                                </h3>
+                                                <p className="mt-2 text-gray-600 text-sm line-clamp-3">
+                                                    {news.excerpt}
+                                                </p>
+                                                <div className="mt-4">
+                                                    <Link
+                                                        href={route(
+                                                            "news.show",
+                                                            news.slug
+                                                        )}
+                                                        className="text-primary font-semibold hover:text-secondary transition-colors"
+                                                    >
+                                                        Baca Selengkapnya &rarr;
+                                                    </Link>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </article>
+                                        </article>
+                                    </div>
                                 ))}
                             </div>
                         ) : (

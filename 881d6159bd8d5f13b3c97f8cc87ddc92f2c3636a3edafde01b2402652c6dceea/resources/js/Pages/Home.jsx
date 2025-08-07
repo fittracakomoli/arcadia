@@ -392,27 +392,27 @@ export default function Home({
 
                 {/* Konten Teks */}
                 <div className="relative z-10 p-4">
-                    <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-2 md:mb-4">
+                    <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                         <BlurText text={settings.headline || "Hima Ilkom"} />
                     </h1>
-                    <p className="text-base md:text-xl mb-4 md:mb-8 max-w-screen-lg mx-auto">
-                        <SplitText
-                            text={settings.tagline || "Tagline Hima Ilkom"}
-                        />
+                    <p className="text-lg md:text-xl mb-8 max-w-screen-lg mx-auto">
+                        <AnimatedContent duration={1} delay={0.5}>
+                            {settings.tagline || "Tagline Hima Ilkom"}
+                        </AnimatedContent>
                     </p>
                     <div className="flex gap-4 items-center justify-center">
-                        <AnimatedContent>
+                        <AnimatedContent duration={1} delay={0.75}>
                             <Link
                                 href={route("activity.index")}
-                                className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg text-sm md:text-base transition duration-300 ease-in-out transform hover:scale-105"
+                                className="inline-block bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105"
                             >
                                 Lebih Dekat
                             </Link>
                         </AnimatedContent>
-                        <AnimatedContent>
+                        <AnimatedContent duration={1} delay={0.75}>
                             <Link
                                 href={route("contact")}
-                                className="inline-block bg-transparent border border-white hover:bg-opacity-90 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg text-sm md:text-base transition duration-300 ease-in-out transform hover:scale-105 hover:bg-secondary"
+                                className="inline-block bg-transparent border border-white hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105 hover:bg-secondary"
                             >
                                 Kerja Sama
                             </Link>

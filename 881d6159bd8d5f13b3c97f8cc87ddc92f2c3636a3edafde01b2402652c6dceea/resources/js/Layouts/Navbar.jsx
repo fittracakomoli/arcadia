@@ -201,7 +201,7 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className={`block py-2 px-3 md:h-14 md:mt-7 md:px-3 rounded md:p-0 transition-colors duration-200 ${
+                                        className={`block py-2 px-3 md:h-14 md:mt-7 md:px-3 rounded md:p-0 transition-colors duration-200 w-fit ${
                                             isActive
                                                 ? "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-100"
                                                 : "text-primary relative after:content-[''] after:absolute after:w-full after:h-1 after:bottom-0 after:left-0 after:bg-secondary after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"

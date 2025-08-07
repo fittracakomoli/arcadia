@@ -769,13 +769,8 @@ export default function Home({
                                                 image.caption ||
                                                 `Galeri ${image.category}`
                                             }
-                                            className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                            className="w-full h-full object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                                            <span className="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                {image.category}
-                                            </span>
-                                        </div>
                                     </div>
                                 ))}
                             </div>

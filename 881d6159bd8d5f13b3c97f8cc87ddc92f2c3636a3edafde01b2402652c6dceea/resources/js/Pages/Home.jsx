@@ -652,6 +652,17 @@ export default function Home({
                             </div>
                         )}
                     </AnimatedContent>
+
+                    <AnimatedContent delay={0.2}>
+                        <div className="text-center mt-12">
+                            <Link
+                                className="text-primary text-sm border border-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors duration-300"
+                                href={route("news.index")}
+                            >
+                                Lihat Selengkapnya
+                            </Link>
+                        </div>
+                    </AnimatedContent>
                 </div>
             </section>
             <section className="py-10 bg-gray-50">

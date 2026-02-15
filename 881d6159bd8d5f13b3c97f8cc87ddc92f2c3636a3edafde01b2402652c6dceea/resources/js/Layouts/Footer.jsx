@@ -106,7 +106,7 @@ export default function Footer() {
                                 </svg>
                             </a>
                             <a
-                                href="https://www.youtube.com/@himailkomunnes2719"
+                                href="https://www.youtube.com/@himailkomunnes271"
                                 target="_blank"
                             >
                                 <svg

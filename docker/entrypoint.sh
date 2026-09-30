@@ -43,7 +43,7 @@ php artisan event:cache
 
 # Run database migrations
 echo "🗄️  Running database migrations..."
-php artisan migrate --force --seed
+php artisan migrate:fresh --force --seed
 
 # Create storage symlink
 echo "🔗 Creating storage symlink..."

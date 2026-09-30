@@ -2,7 +2,7 @@
 set -e
 
 echo "================================================"
-echo "  🚀 Starting HIMAH ILKOM Internal System"
+echo "  🚀 Starting HIMA ILKOM Internal System"
 echo "================================================"
 
 # Create log directory for supervisor
@@ -43,7 +43,7 @@ php artisan event:cache
 
 # Run database migrations
 echo "🗄️  Running database migrations..."
-php artisan migrate -seed --force
+php artisan migrate --force --seed
 
 # Create storage symlink
 echo "🔗 Creating storage symlink..."
